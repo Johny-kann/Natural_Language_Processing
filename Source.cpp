@@ -15,8 +15,10 @@ using namespace std;
 
 int main(int arglen, char *argc)
 {
+	using namespace johny;
+
 	std::vector<tweetStyle> tweetVectors;
-	tweetVectors = parseFile("trainingSample.csv");
+	tweetVectors = parseFile("trainData.csv");
 	cout << tweetVectors.size();
 	
 	std::vector<std::string> posWords = tweetsToWords(tweetVectors,true);
@@ -56,5 +58,6 @@ int main(int arglen, char *argc)
 		*/
 
 	cout << "\n Words Size "<<posWords.size()<<'\t'<<negWords.size();
+	cout << "\nPositive tweets " << johny::status.posWords << " negative tweets " << johny::status.negWords;
 	getchar();
 }

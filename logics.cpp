@@ -6,7 +6,7 @@
 #include "logics.h"
 
 
-std::vector<std::string> parseTextToWords(std::string text)
+std::vector<std::string> johny::parseTextToWords(std::string text)
 {
 	using namespace std;
 
@@ -29,9 +29,10 @@ std::vector<std::string> parseTextToWords(std::string text)
 
 }
 
-std::vector<tweetStyle> parseFile(std::string fileName)
+std::vector<johny::tweetStyle> johny::parseFile(std::string fileName)
 {
 	using namespace std;
+	using namespace johny;
 
 	ifstream file(fileName); // declare file stream: http://www.cplusplus.com/reference/iostream/ifstream/
 	string value;
@@ -57,6 +58,10 @@ std::vector<tweetStyle> parseFile(std::string fileName)
 			switch (cc)
 			{
 			case 0: (tes).clas = string(cell, 1, cell.length() - 2);
+				if ((tes).clas.compare("0") == 0)
+					johny::status.negWords++;
+				else if ((tes).clas.compare("4") == 0)
+					johny::status.posWords++;
 				break;
 
 			case 4: (tes).sender = string(cell, 1, cell.length() - 2);
@@ -94,7 +99,7 @@ std::vector<tweetStyle> parseFile(std::string fileName)
 }
 
 
-std::vector<std::string> tweetsToWords(std::vector<tweetStyle> tweets, bool pos)
+std::vector<std::string> johny::tweetsToWords(std::vector<johny::tweetStyle> tweets, bool pos)
 {
 	using namespace std;
 
@@ -137,7 +142,7 @@ std::vector<std::string> tweetsToWords(std::vector<tweetStyle> tweets, bool pos)
 	return text_words;
 }
 
-std::vector<std::string> parseFileStrings(std::string fileName)
+std::vector<std::string> johny::parseFileStrings(std::string fileName)
 {
 	using namespace std;
 

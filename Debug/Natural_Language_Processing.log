@@ -1,4 +1,4 @@
-﻿Build started 11/28/2015 4:34:39 PM.
+﻿Build started 11/28/2015 4:55:20 PM.
      1>Project "C:\Users\User\documents\visual studio 2013\Projects\Natural_Language_Processing\Natural_Language_Processing\Natural_Language_Processing.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Source.cpp logics.cpp
@@ -23,4 +23,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:06.58
+Time Elapsed 00:00:06.25
