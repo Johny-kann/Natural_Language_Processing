@@ -27,5 +27,14 @@ int main(int arglen, char *argc)
 	<< tweetVectors.at(i).message << '\n';
 	*/		
 	
+//	std::vector<std::string> strings;
+	pos = parseFileStrings("pos.txt");
+	neg = parseFileStrings("neg.txt");
+
+	cout << pos.size()<<'\t'<<neg.size();
+
+//	for (std::string str : strings)
+//		cout << str << '\n';
+//	pos = strings;
 	getchar();
 }

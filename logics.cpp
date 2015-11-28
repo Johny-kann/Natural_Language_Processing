@@ -54,18 +54,7 @@ std::vector<tweetStyle> parseFile(std::string fileName)
 			cc++;
 			if (cc == 5)
 				cc = 0;
-	/*	std::getline(lineStream, cell, ',');
-		
-
-		std::getline(lineStream, cell, ',');
-		
-
-		std::getline(lineStream, cell, ',');
-		
-
-		std::getline(lineStream, cell, ',');
-		*/
-
+	
 		}
 
 	
@@ -76,4 +65,68 @@ std::vector<tweetStyle> parseFile(std::string fileName)
 
 	file.close();
 	return tweetVectors;
+}
+
+
+std::vector<std::string> parseFileStrings(std::string fileName)
+{
+	using namespace std;
+
+	ifstream file(fileName);
+
+	string line;
+
+	vector<string> words;
+
+	while (//file.good()
+		getline(file, line))
+	{
+		//		std::getline(file, line);
+
+	//	std::stringstream lineStream(line);
+		std::string cell;
+
+		words.push_back(line);
+
+	
+	/*	int cc = 0;
+
+		while (std::getline(lineStream, cell, ','))
+		{
+			switch (cc)
+			{
+			case 0: (tes).clas = string(cell, 1, cell.length() - 2);
+				break;
+
+			case 1: (tes).id = string(cell, 1, cell.length() - 2);
+				break;
+
+			case 2: (tes).date = string(cell, 1, cell.length() - 2);
+				break;
+
+			case 3: (tes).query = string(cell, 1, cell.length() - 2);
+				break;
+
+			case 4: (tes).message = string(cell, 1, cell.length() - 2);
+				break;
+
+			default: break;
+			}
+
+			cc++;
+			if (cc == 5)
+				cc = 0;
+
+		}
+
+
+
+		tweetVectors.push_back((tes));
+		*/
+
+	}
+
+	file.close();
+
+	return words;
 }
