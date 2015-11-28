@@ -2,4 +2,4 @@
 #include <string>
 
 
-std::vector<std::string> pos, neg;
+std::vector<std::string> pos, neg, vocabulary;

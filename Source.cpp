@@ -16,25 +16,45 @@ using namespace std;
 int main(int arglen, char *argc)
 {
 	std::vector<tweetStyle> tweetVectors;
-	tweetVectors = parseFile("testdata.csv");
-
+	tweetVectors = parseFile("trainingSample.csv");
 	cout << tweetVectors.size();
-/*	for (int i = 0; i<tweetVectors.size(); i++)
-		cout << tweetVectors.at(i).clas<<'\t'
-			<<tweetVectors.at(i).date<<'\t'
-			<<tweetVectors.at(i).id<<'\t'
-			<< tweetVectors.at(i).query << '\t'
-	<< tweetVectors.at(i).message << '\n';
-	*/		
 	
-//	std::vector<std::string> strings;
-	pos = parseFileStrings("pos.txt");
-	neg = parseFileStrings("neg.txt");
+	std::vector<std::string> posWords = tweetsToWords(tweetVectors,true);
 
-	cout << pos.size()<<'\t'<<neg.size();
+	std::vector<std::string> negWords = tweetsToWords(tweetVectors, false);
+
+/*	for (tweetStyle tweets : tweetVectors)
+	{
+		cout <<"Class : "<< tweets.clas<<'\t'
+			<< "Date : " << tweets.date << '\t'
+			<< "Id : " << tweets.id << '\t'
+			<< "Message : " << tweets.message << '\t'
+			<< "Query : " << tweets.query << '\n';
+	}
+	*/
+	
+/*	std::vector<std::string> strings;
+//	pos = parseFileStrings("pos.txt");
+//	neg = parseFileStrings("neg.txt");
+
+//	cout << pos.size()<<'\t'<<neg.size()<<'\t';
+
+	vocabulary.insert(std::end(vocabulary), std::begin(pos), std::end(pos));
+	vocabulary.insert(std::end(vocabulary), std::begin(neg), std::end(neg));
+
+	cout << vocabulary.size();
+	*/
 
 //	for (std::string str : strings)
 //		cout << str << '\n';
 //	pos = strings;
+
+/*	std::vector<std::string> strings = parseTextToWords("@glovely  Thx for  the advice! We are just waiting for the Petosin to kick in ");
+
+	for (std::string str : strings)
+		cout << str << '\n';
+		*/
+
+	cout << "\n Words Size "<<posWords.size()<<'\t'<<negWords.size();
 	getchar();
 }

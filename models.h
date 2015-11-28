@@ -7,10 +7,10 @@
 
 struct tweetStyle
 {
-	std::string clas, id, date, query, message;
+	std::string clas, id, date, query, sender, message;
 };
 
-extern std::vector<std::string> pos, neg;
+extern std::vector<std::string> pos, neg, vocabulary;
 
 //extern list<std::string> tot;
 
