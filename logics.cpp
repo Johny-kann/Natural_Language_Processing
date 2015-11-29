@@ -6,6 +6,43 @@
 #include "logics.h"
 
 
+void johny::toLower(std::string &text)
+{
+	for (int i = 0; i < text.size(); i++)
+	{
+		if (text.at(i) >= 'A' && text.at(i) <= 'Z')
+			text.at(i) = tolower(text.at(i));
+	}
+
+
+}
+
+
+void johny::findWordProb(std::vector<std::string> texts, johny::vocabStatus &word, int vocabLength, bool pos)
+{
+	using namespace std;
+
+//	johny::vocabStatus status;
+//	status.word = word;
+
+	int countMatch = 0;
+	
+	for (string str : texts)
+	{
+		if (str.compare(word.word) == 0)
+			countMatch++;
+	}
+
+//	cout << "Matches "<<countMatch<<std::endl;
+
+	if (pos)
+		word.posProb = (double)(countMatch + 1)/(texts.size() + vocabLength);
+	else if (!pos)
+		word.negProb = (double)(countMatch + 1) / (texts.size() + vocabLength);
+
+//	return status;
+}
+
 std::vector<std::string> johny::parseTextToWords(std::string text)
 {
 	using namespace std;
@@ -20,7 +57,7 @@ std::vector<std::string> johny::parseTextToWords(std::string text)
 		getline(lineStream, word,' '))
 	{
 	
-
+		
 		words.push_back(word);
 		
 	}
@@ -77,6 +114,7 @@ std::vector<johny::tweetStyle> johny::parseFile(std::string fileName)
 				break;
 
 			case 5: (tes).message = string(cell, 1, cell.length() - 2);
+				toLower(tes.message);
 				break;
 
 			default: break;
@@ -158,13 +196,11 @@ std::vector<std::string> johny::parseFileStrings(std::string fileName)
 		//		std::getline(file, line);
 
 	//	std::stringstream lineStream(line);
-		std::string cell;
+	//	std::string cell;
+
+		toLower(line);
 
 		words.push_back(line);
-
-	
-	
-
 	}
 
 	file.close();

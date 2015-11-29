@@ -13,4 +13,8 @@ std::vector<std::string> parseTextToWords(std::string text);
 
 std::vector<std::string> tweetsToWords(std::vector<johny::tweetStyle> tweets, bool pos);
 
+void findWordProb(std::vector<std::string> texts, johny::vocabStatus &word, int vocabLength, bool pos);
+
+void toLower(std::string &text);
+
 }

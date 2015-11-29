@@ -16,11 +16,19 @@ struct tweetStyle
 struct dataStatus
 {
 	int posWords, negWords;
+	double posProb, negProb;
+};
+
+struct vocabStatus
+{
+	std::string word;
+	double posProb, negProb;
 };
 
 extern std::vector<std::string> pos, neg, vocabulary;
 
 extern dataStatus status;
+
 
 //extern list<std::string> tot;
 }

@@ -18,12 +18,20 @@ int main(int arglen, char *argc)
 	using namespace johny;
 
 	std::vector<tweetStyle> tweetVectors;
-	tweetVectors = parseFile("trainData.csv");
-	cout << tweetVectors.size();
-	
-	std::vector<std::string> posWords = tweetsToWords(tweetVectors,true);
+	tweetVectors = parseFile("trainingSample.csv");
+//	cout << tweetVectors.size();
 
-	std::vector<std::string> negWords = tweetsToWords(tweetVectors, false);
+	
+//	for (tweetStyle tweet : tweetVectors)
+//		cout << tweet.message << '\t';
+
+	johny::status.posProb = (double)johny::status.posWords / tweetVectors.size();
+	johny::status.negProb = (double)johny::status.negWords / tweetVectors.size();
+	
+	std::vector<std::string> posTextWords = tweetsToWords(tweetVectors,true);
+
+	std::vector<std::string> negTextWords = tweetsToWords(tweetVectors, false);
+
 
 /*	for (tweetStyle tweets : tweetVectors)
 	{
@@ -35,18 +43,30 @@ int main(int arglen, char *argc)
 	}
 	*/
 	
-/*	std::vector<std::string> strings;
-//	pos = parseFileStrings("pos.txt");
-//	neg = parseFileStrings("neg.txt");
+	std::vector<std::string> strings;
+	pos = parseFileStrings("pos.txt");
+	neg = parseFileStrings("neg.txt");
 
 //	cout << pos.size()<<'\t'<<neg.size()<<'\t';
 
 	vocabulary.insert(std::end(vocabulary), std::begin(pos), std::end(pos));
+
 	vocabulary.insert(std::end(vocabulary), std::begin(neg), std::end(neg));
 
-	cout << vocabulary.size();
-	*/
 
+	cout << pos.size() << '\t' << neg.size();
+	cout << '\n'<<vocabulary.size();
+	
+	johny::vocabStatus vocab;
+
+	vocab.word = vocabulary.at(0);
+
+	johny::findWordProb(posTextWords, vocab, vocabulary.size(), true);
+
+	johny::findWordProb(negTextWords, vocab, vocabulary.size(), false);
+
+	cout <<"\nVocabulary "<<vocab.word<< vocab.posProb << '\t' << vocab.negProb;
+	
 //	for (std::string str : strings)
 //		cout << str << '\n';
 //	pos = strings;
@@ -57,7 +77,9 @@ int main(int arglen, char *argc)
 		cout << str << '\n';
 		*/
 
-	cout << "\n Words Size "<<posWords.size()<<'\t'<<negWords.size();
+/*	cout << "\n Words Size "<<posTextWords.size()<<'\t'<<negTextWords.size();
 	cout << "\nPositive tweets " << johny::status.posWords << " negative tweets " << johny::status.negWords;
+	cout << johny::status.posProb << " " << johny::status.negProb;
+	*/
 	getchar();
 }
