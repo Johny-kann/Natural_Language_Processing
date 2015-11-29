@@ -17,6 +17,14 @@ void johny::toLower(std::string &text)
 
 }
 
+void johny::calculateProbOfWords(std::vector<std::string> texts, std::vector<johny::vocabStatus> &vocabStatusList, int vocabLength, bool pos)
+{
+	for (int i = 0; i < vocabulary.size(); i++)
+	{
+		johny::findWordProb(texts, vocabStatusList.at(i), vocabulary.size(), pos);
+
+	}
+}
 
 void johny::findWordProb(std::vector<std::string> texts, johny::vocabStatus &word, int vocabLength, bool pos)
 {

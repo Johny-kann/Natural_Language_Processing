@@ -18,7 +18,7 @@ int main(int arglen, char *argc)
 	using namespace johny;
 
 	std::vector<tweetStyle> tweetVectors;
-	tweetVectors = parseFile("trainingSample.csv");
+	tweetVectors = parseFile("data/trainingSample.csv");
 //	cout << tweetVectors.size();
 
 	
@@ -44,8 +44,8 @@ int main(int arglen, char *argc)
 	*/
 	
 	std::vector<std::string> strings;
-	pos = parseFileStrings("pos.txt");
-	neg = parseFileStrings("neg.txt");
+	pos = parseFileStrings("data/pos_red.txt");
+	neg = parseFileStrings("data/neg_red.txt");
 
 //	cout << pos.size()<<'\t'<<neg.size()<<'\t';
 
@@ -57,29 +57,55 @@ int main(int arglen, char *argc)
 	cout << pos.size() << '\t' << neg.size();
 	cout << '\n'<<vocabulary.size();
 	
-	johny::vocabStatus vocab;
-
-	vocab.word = vocabulary.at(0);
-
-	johny::findWordProb(posTextWords, vocab, vocabulary.size(), true);
-
-	johny::findWordProb(negTextWords, vocab, vocabulary.size(), false);
-
-	cout <<"\nVocabulary "<<vocab.word<< vocab.posProb << '\t' << vocab.negProb;
 	
-//	for (std::string str : strings)
-//		cout << str << '\n';
-//	pos = strings;
 
-/*	std::vector<std::string> strings = parseTextToWords("@glovely  Thx for  the advice! We are just waiting for the Petosin to kick in ");
+	
 
-	for (std::string str : strings)
-		cout << str << '\n';
-		*/
+//	johny::findWordProb(posTextWords, vocab, vocabulary.size(), true);
 
-/*	cout << "\n Words Size "<<posTextWords.size()<<'\t'<<negTextWords.size();
-	cout << "\nPositive tweets " << johny::status.posWords << " negative tweets " << johny::status.negWords;
-	cout << johny::status.posProb << " " << johny::status.negProb;
+//	johny::findWordProb(negTextWords, vocab, vocabulary.size(), false);
+
+//	cout <<"\nVocabulary "<<vocab.word<< vocab.posProb << '\t' << vocab.negProb;
+	
+	// for target -
+
+	vector<vocabStatus> vocabList;
+
+	for (string newWord : vocabulary)
+	{
+		johny::vocabStatus vocab;
+
+		vocab.word = newWord;
+
+		vocabList.push_back(vocab);
+	}
+
+
+	johny::calculateProbOfWords(posTextWords, vocabList, vocabulary.size(), true);
+
+	johny::calculateProbOfWords(negTextWords, vocabList, vocabulary.size(), false);
+
+//	johny::calculateProbOfWords(posTextWords, )
+
+/*	for (int i = 0; i < vocabulary.size(); i++)
+	{
+		johny::findWordProb(posTextWords, vocabList.at(i), vocabulary.size(), true);
+
+	}
+
+	for (int i = 0; i < vocabulary.size(); i++)
+	{
+//		johny::vocabStatus vocab;
+
+//		vocab.word = vocabulary.at(i);
+
+		johny::findWordProb(negTextWords, vocabList.at(i), vocabulary.size(), false);
+	}
+
 	*/
+
+	for (int i = 0; i < vocabList.size();i++)
+	cout <<endl<< vocabList.at(i).word << '\t' << vocabList.at(i).negProb <<'\t'<< vocabList.at(i).posProb;
+
 	getchar();
 }
