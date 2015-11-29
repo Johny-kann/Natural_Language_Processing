@@ -13,7 +13,7 @@
 using namespace std;
 
 
-int main(int arglen, char *argc)
+int main2(int arglen, char *argc)
 {
 	using namespace johny;
 
@@ -103,4 +103,6 @@ int main(int arglen, char *argc)
 	}
 
 	getchar();
+
+	return 0;
 }

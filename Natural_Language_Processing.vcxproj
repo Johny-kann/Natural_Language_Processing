@@ -157,6 +157,7 @@ copy "$(CudaToolkitBinDir)\cudart*.dll" "$(OutDir)"</Command>
     <ClCompile Include="logics.cpp" />
     <ClCompile Include="models.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="logics.h" />

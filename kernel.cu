@@ -3,13 +3,55 @@
 #include "device_launch_parameters.h"
 
 #include <stdio.h>
+#include <string>
+#include <iostream>
+
+struct cudaString
+{
+	char *str;
+	int length;
+};
 
 cudaError_t addWithCuda(int *c, const int *a, const int *b, unsigned int size);
+cudaError_t testWithCuda(unsigned int size);
 
 __global__ void addKernel(int *c, const int *a, const int *b)
 {
     int i = threadIdx.x;
     c[i] = a[i] + b[i];
+}
+
+__global__ void testKernel(cudaString str)
+{
+	int i = blockIdx.x*blockDim.x + threadIdx.x;
+//	str.at(0);
+//	std::cout << str;
+	printf("%s\t",str.str);
+}
+
+
+int main4()
+{
+	
+
+/*	cudaError_t cudaStatus = testWithCuda(10);
+
+	if (cudaStatus != cudaSuccess) {
+		fprintf(stderr, "addWithCuda failed!");
+		return 1;
+	}
+
+	cudaStatus = cudaDeviceReset();
+	if (cudaStatus != cudaSuccess) {
+		fprintf(stderr, "cudaDeviceReset failed!");
+		return 1;
+	}*/
+	
+
+
+	getchar();
+
+	return 0;
 }
 
 int main1()
@@ -39,6 +81,59 @@ int main1()
 
     return 0;
 }
+
+
+cudaError_t testWithCuda(unsigned int size)
+{
+/*	std::string str = "Hello";
+
+	cudaString string;
+
+	string.str = new char[str.size() + 1];
+
+	memcpy(string.str, str.c_str(), str.size());
+	*/
+
+	char *strr = "Hello";
+	cudaString str;
+	str.str = strr;
+
+	cudaError_t cudaStatus;
+
+	// Choose which GPU to run on, change this on a multi-GPU system.
+	cudaStatus = cudaSetDevice(0);
+	if (cudaStatus != cudaSuccess) {
+		fprintf(stderr, "cudaSetDevice failed!  Do you have a CUDA-capable GPU installed?");
+		goto Error;
+	}
+
+	
+
+	// Launch a kernel on the GPU with one thread for each element.
+	testKernel << <1, size >> >(str);
+
+	// Check for any errors launching the kernel
+	cudaStatus = cudaGetLastError();
+	if (cudaStatus != cudaSuccess) {
+		fprintf(stderr, "addKernel launch failed: %s\n", cudaGetErrorString(cudaStatus));
+		goto Error;
+	}
+
+	// cudaDeviceSynchronize waits for the kernel to finish, and returns
+	// any errors encountered during the launch.
+	cudaStatus = cudaDeviceSynchronize();
+	if (cudaStatus != cudaSuccess) {
+		fprintf(stderr, "cudaDeviceSynchronize returned error code %d after launching addKernel!\n", cudaStatus);
+		goto Error;
+	}
+
+	// Copy output vector from GPU buffer to host memory.
+
+Error:
+
+	return cudaStatus;
+}
+
 
 // Helper function for using CUDA to add vectors in parallel.
 cudaError_t addWithCuda(int *c, const int *a, const int *b, unsigned int size)
