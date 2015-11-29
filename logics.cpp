@@ -74,6 +74,78 @@ std::vector<std::string> johny::parseTextToWords(std::string text)
 
 }
 
+std::vector<johny::tweetStyle> johny::parseFileTarget(std::string fileName)
+{
+	using namespace std;
+	using namespace johny;
+
+	ifstream file(fileName); // declare file stream: http://www.cplusplus.com/reference/iostream/ifstream/
+	string value;
+
+	vector<tweetStyle> tweetVectors;
+	
+	string line;
+
+	while (std::getline(file, line))
+	{
+		
+
+		std::stringstream lineStream(line);
+		std::string                cell;
+
+		tweetStyle tes;
+		
+		int cc = 0;
+
+		while (std::getline(lineStream, cell, ','))
+		{
+			switch (cc)
+			{
+			case 0: (tes).clas = "-1";
+			/*	if ((tes).clas.compare("0") == 0)
+					johny::status.negWords++;
+				else if ((tes).clas.compare("4") == 0)
+					johny::status.posWords++;
+					*/
+				break;
+
+			case 4: (tes).sender = string(cell, 1, cell.length() - 2);
+				break;
+
+			case 1: (tes).id = string(cell, 1, cell.length() - 2);
+				break;
+
+			case 2: (tes).date = string(cell, 1, cell.length() - 2);
+				break;
+
+			case 3: (tes).query = string(cell, 1, cell.length() - 2);
+				break;
+
+			case 5: (tes).message = string(cell, 1, cell.length() - 2);
+				toLower(tes.message);
+				break;
+
+			default: break;
+			}
+
+			cc++;
+			if (cc == 6)
+				cc = 0;
+
+		}
+
+
+
+		tweetVectors.push_back((tes));
+
+	}
+
+	file.close();
+	return tweetVectors;
+
+
+}
+
 std::vector<johny::tweetStyle> johny::parseFile(std::string fileName)
 {
 	using namespace std;
@@ -186,6 +258,48 @@ std::vector<std::string> johny::tweetsToWords(std::vector<johny::tweetStyle> twe
 	}
 
 	return text_words;
+}
+
+
+bool johny::wordToVocabsMatch(std::string word, std::vector<vocabStatus> vocabStatusList, bool pos, double &prob)
+{
+	for (int i = 0; i < vocabStatusList.size(); i++)
+	{
+		if (word.compare(vocabStatusList.at(i).word) == 0)
+		{
+			if (pos)
+				prob = vocabStatusList.at(i).posProb;
+			else if (!pos)
+				prob = vocabStatusList.at(i).negProb;
+
+			return true;
+		}
+	}
+
+	prob = constProb;
+	return false;
+}
+
+
+double johny::showtweetProb(std::vector<std::string> texts, std::vector<vocabStatus> vocabStatusList, bool pos)
+{
+	double probV;
+	if (pos)
+		probV = johny::status.posProb;
+	else if (!pos)
+		probV = johny::status.negProb;
+
+	double prob = probV;
+
+	for (int i = 0; i < texts.size(); i++)
+	{
+		double temp;
+		wordToVocabsMatch(texts.at(i), vocabStatusList, pos, temp);
+		prob *= temp;
+		
+	}
+
+	return prob;
 }
 
 std::vector<std::string> johny::parseFileStrings(std::string fileName)

@@ -17,8 +17,9 @@ int main(int arglen, char *argc)
 {
 	using namespace johny;
 
-	std::vector<tweetStyle> tweetVectors;
+	std::vector<tweetStyle> tweetVectors,tweetTargets;
 	tweetVectors = parseFile("data/trainingSample.csv");
+	tweetTargets = parseFileTarget("data/testSample.csv");
 //	cout << tweetVectors.size();
 
 	
@@ -33,16 +34,6 @@ int main(int arglen, char *argc)
 	std::vector<std::string> negTextWords = tweetsToWords(tweetVectors, false);
 
 
-/*	for (tweetStyle tweets : tweetVectors)
-	{
-		cout <<"Class : "<< tweets.clas<<'\t'
-			<< "Date : " << tweets.date << '\t'
-			<< "Id : " << tweets.id << '\t'
-			<< "Message : " << tweets.message << '\t'
-			<< "Query : " << tweets.query << '\n';
-	}
-	*/
-	
 	std::vector<std::string> strings;
 	pos = parseFileStrings("data/pos_red.txt");
 	neg = parseFileStrings("data/neg_red.txt");
@@ -57,17 +48,6 @@ int main(int arglen, char *argc)
 	cout << pos.size() << '\t' << neg.size();
 	cout << '\n'<<vocabulary.size();
 	
-	
-
-	
-
-//	johny::findWordProb(posTextWords, vocab, vocabulary.size(), true);
-
-//	johny::findWordProb(negTextWords, vocab, vocabulary.size(), false);
-
-//	cout <<"\nVocabulary "<<vocab.word<< vocab.posProb << '\t' << vocab.negProb;
-	
-	// for target -
 
 	vector<vocabStatus> vocabList;
 
@@ -85,27 +65,42 @@ int main(int arglen, char *argc)
 
 	johny::calculateProbOfWords(negTextWords, vocabList, vocabulary.size(), false);
 
-//	johny::calculateProbOfWords(posTextWords, )
-
-/*	for (int i = 0; i < vocabulary.size(); i++)
-	{
-		johny::findWordProb(posTextWords, vocabList.at(i), vocabulary.size(), true);
-
-	}
-
-	for (int i = 0; i < vocabulary.size(); i++)
-	{
-//		johny::vocabStatus vocab;
-
-//		vocab.word = vocabulary.at(i);
-
-		johny::findWordProb(negTextWords, vocabList.at(i), vocabulary.size(), false);
-	}
-
+/*	for (int i = 0; i < vocabList.size();i++)
+	cout <<endl<< vocabList.at(i).word << '\t' << vocabList.at(i).negProb <<'\t'<< vocabList.at(i).posProb;
 	*/
 
-	for (int i = 0; i < vocabList.size();i++)
-	cout <<endl<< vocabList.at(i).word << '\t' << vocabList.at(i).negProb <<'\t'<< vocabList.at(i).posProb;
+	cout << "\n..........Prob Calcuated.............\n";
+
+	vector<double> probs;
+	for (int i = 0; i < tweetTargets.size(); i++)
+	{
+	//	vector<string> strings = parseTextToWords(tweetTargets.at(i).message);
+		double probPos = showtweetProb(
+			parseTextToWords(tweetTargets[i].message), vocabList, true);
+
+		double probNeg = showtweetProb(
+			parseTextToWords(tweetTargets[i].message), vocabList, false);
+
+		if (probPos > probNeg)
+		{
+			tweetTargets[i].clas = "4";
+			probs.push_back(probPos);
+		}
+		else
+		{
+			tweetTargets[i].clas = "0";
+			probs.push_back(probNeg);
+		}
+
+
+	}
+
+	
+
+	for (int i = 0; i < tweetTargets.size(); i++)
+	{
+		cout << "\n" << tweetTargets[i].message << '\t' << probs[i]<<'\t'<<tweetTargets[i].clas;
+	}
 
 	getchar();
 }

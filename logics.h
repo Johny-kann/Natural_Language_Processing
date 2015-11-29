@@ -4,8 +4,11 @@
 namespace johny
 {
 
+#define constProb 0.000001
 
 std::vector<johny::tweetStyle> parseFile(std::string fileName);
+
+std::vector<johny::tweetStyle> parseFileTarget(std::string fileName);
 
 std::vector<std::string> parseFileStrings(std::string fileName);
 
@@ -18,5 +21,9 @@ void findWordProb(std::vector<std::string> texts, johny::vocabStatus &word, int 
 void toLower(std::string &text);
 
 void calculateProbOfWords(std::vector<std::string> texts, std::vector<vocabStatus> &vocabStatusList, int vocabLength, bool pos);
+
+double showtweetProb(std::vector<std::string> texts, std::vector<vocabStatus> vocabStatusList, bool pos);
+
+bool wordToVocabsMatch(std::string word, std::vector<vocabStatus> vocabStatusList, bool pos, double &prob);
 
 }
