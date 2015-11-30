@@ -15,6 +15,6 @@ struct myString
 };
 
 
-cudaError_t separateStub(cudaString *linesCuda, myString *tweetsCuda, unsigned int size);
+//cudaError_t separateStub(cudaString *linesCuda, myString *tweetsCuda, unsigned int size);
 
-int separator(cudaString *linesCuda, myString *tweetsCuda, unsigned int size);
+int separator(char *chars, int *indexes, unsigned int size);

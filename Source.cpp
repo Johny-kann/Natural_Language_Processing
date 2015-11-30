@@ -18,7 +18,7 @@ int main2(int arglen, char *argc)
 	using namespace johny;
 
 	std::vector<tweetStyle> tweetVectors,tweetTargets;
-	tweetVectors = parseFile("data/trainingSample.csv");
+	tweetVectors = johnyGPU::parseFileCuda("data/trainingSample.csv");
 	tweetTargets = parseFileTarget("data/testSample.csv");
 //	cout << tweetVectors.size();
 

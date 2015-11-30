@@ -24,48 +24,65 @@ struct myString
 cudaError_t addWithCuda(int *c, const int *a, const int *b, unsigned int size);
 cudaError_t testWithCuda(unsigned int size);
 
-__global__ void separateKernal(cudaString *cuda, myString *temp, unsigned int size)
+__device__ void charLineHandlerDevice(char *c, int *indexes, unsigned int lineNum)
+{
+	char prev, prev2, curr;
+//	indexes[0] = 300 * lineNum;
+
+	int count = 0;
+
+//	printf("kernal %d", blockIdx.x*blockDim.x+threadIdx.x);
+
+	int i;
+	for (i = 2; c[i] != '\0'; i++)
+	{
+		//	c[i] = c[i] + 1;
+		//	printf("%c", c[i]);
+		curr = c[i];
+		prev = c[i - 1];
+		prev2 = c[i - 2];
+
+		if (curr == '\"' && prev == ',' && prev2 == '\"')
+		{
+			c[i] = '\0';
+			c[i - 1] = '\0';
+			c[i - 2] = '\0';
+		}
+		else if (prev == '\0')
+		{
+			count++;
+			indexes[count] = 300 * lineNum + i;
+		}
+
+		if (curr >= 'A' && curr <= 'Z')
+			c[i]=c[i]+32;
+
+	}
+
+		c[0] = '\0';
+		c[i-1] = '\0';
+		indexes[0] = 300 * lineNum + 1;
+		count++;
+		indexes[count] = -1;
+}
+
+
+__global__ void separateKernal(char *charIn, int *indexes, unsigned int size)
 {
 	int i = blockDim.x*blockIdx.x + threadIdx.x;
 
+//	__syncthreads();
 	if (i < size)
 	{
-	char *prev, *prev2, *curr;
-	temp[i].str = cuda[i].str;
-	char *c = cuda[i].str;
-	temp[i].index[0] = 0;
-	temp[i].totIndexes = 1;
+		charLineHandlerDevice(charIn + i * 300, indexes + i * 20, i);
 
-	for (int i = 2; i < cuda[i].length; i++)
-	{
-		curr = &c[i];
-		prev = &c[i - 1];
-		prev2 = &c[i - 2];
-
-		if (*curr == '\"' && *prev == ',' && *prev2 == '\"')
-		{
-
-			c[i] = '\0';
-
-			c[i - 1] = '\0';
-
-			c[i - 2] = '\0';
-
-		}
-		else if (*prev == '\0')
-		{
-			temp->index[temp->totIndexes] = i;
-			temp->totIndexes++;
-		}
+	//	printf("%d ", i);
 	}
+//	__syncthreads();
 
-	c[0] = '\0';
-	temp[i].index[0] = 1;
-	c[cuda[i].length - 1] = '\0';
-
-	}
 
 }
+
 
 
 
@@ -108,7 +125,7 @@ int main4()
 	return 0;
 }
 
-int main1()
+int mainK()
 {
     const int arraySize = 5;
     const int a[arraySize] = { 1, 2, 3, 4, 5 };
@@ -136,10 +153,12 @@ int main1()
     return 0;
 }
 
-int separator(cudaString *linesCuda, myString *tweetsCuda, unsigned int size)
+cudaError_t separateStub(char *chars, int *indexes, unsigned int size);
+
+int separator(char *chars, int *indexes, unsigned int size)
 {
 	// Add vectors in parallel.
-	cudaError_t cudaStatus = separateStub(linesCuda, tweetsCuda, size);
+	cudaError_t cudaStatus = separateStub(chars, indexes, size);
 	if (cudaStatus != cudaSuccess) {
 		fprintf(stderr, "addWithCuda failed!");
 		return 1;
@@ -156,10 +175,10 @@ int separator(cudaString *linesCuda, myString *tweetsCuda, unsigned int size)
 	return 0;
 }
 
-cudaError_t separateStub(cudaString *linesCuda, myString *tweetsCuda, unsigned int size)
+cudaError_t separateStub(char *chars, int *indexes, unsigned int size)
 {
-	cudaString *dev_in;
-	myString *dev_out;
+	char *dev_in;
+	int *dev_out;
 	cudaError_t cudaStatus;
 
 	cudaStatus = cudaSetDevice(0);
@@ -168,22 +187,27 @@ cudaError_t separateStub(cudaString *linesCuda, myString *tweetsCuda, unsigned i
 		goto Error;
 	}
 
-	// Allocate GPU buffers for three vectors (two input, one output)    .
-	cudaStatus = cudaMalloc((void**)&dev_in, size * sizeof(cudaString));
+	// Allocate GPU buffers for three vectors (two input, one output).
+
+	std::cout << 300 * size*sizeof(char)<<'\t';
+	cudaStatus = cudaMalloc((void**)&dev_in, 300*size * sizeof(char));
 	if (cudaStatus != cudaSuccess) {
 		fprintf(stderr, "cudaMalloc failed!");
 		goto Error;
 	}
 
 	// Allocate GPU buffers for three vectors (two input, one output)    .
-	cudaStatus = cudaMalloc((void**)&dev_out, size * sizeof(myString));
+
+	std::cout << 20 * size*sizeof(int) << '\t';
+	cudaStatus = cudaMalloc((void**)&dev_out, 20*size * sizeof(int));
 	if (cudaStatus != cudaSuccess) {
 		fprintf(stderr, "cudaMalloc failed!");
 		goto Error;
 	}
+
 
 	// Copy input vectors from host memory to GPU buffers.
-	cudaStatus = cudaMemcpy(dev_in, linesCuda, size * sizeof(cudaString), cudaMemcpyHostToDevice);
+	cudaStatus = cudaMemcpy(dev_in, chars, 300*size * sizeof(char), cudaMemcpyHostToDevice);
 	if (cudaStatus != cudaSuccess) {
 		fprintf(stderr, "cuda String cudaMemcpy failed!");
 		goto Error;
@@ -193,11 +217,13 @@ cudaError_t separateStub(cudaString *linesCuda, myString *tweetsCuda, unsigned i
 	dim3 block;
 
 	block.x = 512;
-	block.y = 0;
-	block.z = 0;
-	grid.x = ceil(size / 512);
-	grid.y = 0;
-	grid.z = 0;
+	block.y = 1;
+	block.z = 1;
+	grid.x = ceil((double)size / 512);
+	grid.y = 1;
+	grid.z = 1;
+
+	std::cout << grid.x << block.x;
 
 		separateKernal << < grid, block >> >(dev_in,dev_out,size);
 	// Check for any errors launching the kernel
@@ -216,21 +242,23 @@ cudaError_t separateStub(cudaString *linesCuda, myString *tweetsCuda, unsigned i
 	}
 
 	// Copy output vector from GPU buffer to host memory.
-	cudaStatus = cudaMemcpy(tweetsCuda, dev_out, size * sizeof(myString), cudaMemcpyDeviceToHost);
+	cudaStatus = cudaMemcpy(indexes, dev_out, 20 * size * sizeof(int), cudaMemcpyDeviceToHost);
 	if (cudaStatus != cudaSuccess) {
 		fprintf(stderr, "tweets Cuda cudaMemcpy failed!");
 		goto Error;
 	}
 
-	
-
-/*	for (int i = 0; i < size; i++)
-	{
-		separate(&linesCuda[i], &tweetsCuda[i]);
-		//	linesCuda[i].str, linesCuda[i].length, &tweetsCuda[i]);
+	cudaStatus = cudaMemcpy(chars, dev_in, 300 * size * sizeof(char), cudaMemcpyDeviceToHost);
+	if (cudaStatus != cudaSuccess) {
+		fprintf(stderr, "tweets Cuda cudaMemcpy failed!");
+		goto Error;
 	}
-	*/
 
+//	for (int i = 0; i < 300*size; i++)
+//		std::cout << chars[i];
+
+//	for (int i = 0; i < 20 * size; i++)
+//		std::cout << indexes[i]<<' ';
 Error:
 	cudaFree(dev_in);
 	cudaFree(dev_out);

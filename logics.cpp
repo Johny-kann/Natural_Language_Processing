@@ -4,6 +4,7 @@
 #include <iostream>
 #include <iomanip>
 #include "logics.h"
+#include "reductionCuda.cuh"
 
 
 void johny::toLower(std::string &text)
@@ -218,6 +219,73 @@ std::vector<johny::tweetStyle> johny::parseFile(std::string fileName)
 	return tweetVectors;
 }
 
+std::vector<johny::tweetStyle> johnyGPU::parseFileCuda(std::string fileName)
+{
+	using namespace std;
+	using namespace johny;
+
+	ifstream file(fileName); // declare file stream: http://www.cplusplus.com/reference/iostream/ifstream/
+	string value;
+
+	vector<tweetStyle> tweetVectors;
+
+	string line;
+	std::vector<string> lines;
+
+	while (std::getline(file, line))
+	{
+		lines.push_back(line);
+	}
+
+	char *charLines = new char[lines.size() * 300];
+	int *indexes = new int[lines.size() * 20];
+
+	for (int i = 0; i < lines.size(); i++)
+	{
+		for (int j = 0; j < lines[i].size() + 1; j++)
+		{
+			if (j == lines[i].size())
+				charLines[i * 300 + j] = '\0';
+			else
+				charLines[i * 300 + j] = lines[i][j];
+
+		}
+
+	}
+
+	//	charSeparator(charLines, indexes, lines.size());
+	if (separator(charLines, indexes, lines.size()) != 0)
+	{
+		getchar();
+		exit(-3);
+	}
+	else
+	{
+		cout << "Separator executed";
+	}
+
+	for (int i = 0; i < lines.size(); i++)
+	{
+		johny::tweetStyle tweet;
+		(tweet).clas = &charLines[indexes[20 * i]];
+
+		(tweet).id = &charLines[indexes[20 * i + 1]];
+
+		(tweet).date = &charLines[indexes[20 * i + 2]];
+
+		(tweet).query = &charLines[indexes[20 * i + 3]];
+
+		(tweet).sender = &charLines[indexes[20 * i + 4]];
+
+		(tweet).message = &charLines[indexes[20 * i + 5]];
+
+
+		tweetVectors.push_back(tweet);
+	}
+
+	file.close();
+	return tweetVectors;
+}
 
 std::vector<std::string> johny::tweetsToWords(std::vector<johny::tweetStyle> tweets, bool pos)
 {

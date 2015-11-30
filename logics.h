@@ -27,3 +27,8 @@ double showtweetProb(std::vector<std::string> texts, std::vector<vocabStatus> vo
 bool wordToVocabsMatch(std::string word, std::vector<vocabStatus> vocabStatusList, bool pos, double &prob);
 
 }
+
+namespace johnyGPU
+{
+	std::vector<johny::tweetStyle> parseFileCuda(std::string fileName);
+}
