@@ -163,6 +163,8 @@ std::vector<johny::tweetStyle> johny::parseFile(std::string fileName)
 	{
 //		std::getline(file, line);
 
+//		line[0]
+
 		std::stringstream lineStream(line);
 		std::string                cell;
 

@@ -1,6 +1,11 @@
 #include <string>
 #include <stdio.h>
 #include <vector>
+#include "models.h"
+#include <iostream>
+#include  <fstream>
+#include <sstream>
+#include <iomanip>
 
 struct cudaString2
 {
@@ -11,25 +16,44 @@ struct cudaString2
 struct myString
 {
 	char *str;
-	int *index;
-	int totIndexes;
+	short index[10];
+	short totIndexes;
 };
 
-void separate(char *c, int length)
+void separate(char *c, int length, myString *temp)
 {
-	char prev, prev2, curr;
-	prev2 = c[0];
-	prev = c[1];
+	char *prev, *prev2, *curr;
+	temp->str = c;
+	temp->index[0] = 0;
+	temp->totIndexes = 1;
 
 	for (int i = 2; i < length; i++)
 	{
-		curr = c[i];
+		curr = &c[i];
+		prev = &c[i - 1];	
+		prev2 = &c[i - 2];
 
-		if (curr == '\"' && prev == ',' && prev == '\"')
+		if (*curr == '\"' && *prev == ',' && *prev2 == '\"')
 		{
 
+			c[i] = '\0';
+
+			c[i-1] = '\0';
+
+			c[i-2] = '\0';
+		
+		}
+		else if (*prev == '\0')
+		{
+			temp->index[temp->totIndexes] = i;
+			temp->totIndexes++;
 		}
 	}
+
+	c[0] = '\0';
+	temp->index[0] = 1;
+	c[length-1] = '\0';
+	
 }
 
 void tester2(cudaString2 &str)
@@ -49,78 +73,74 @@ void print2(cudaString2 str)
 	printf(str.str);
 }
 
+
+std::vector<johny::tweetStyle> parseFile(std::string fileName)
+{
+	using namespace std;
+	using namespace johny;
+
+	ifstream file(fileName); // declare file stream: http://www.cplusplus.com/reference/iostream/ifstream/
+	string value;
+
+	vector<tweetStyle> tweetVectors;
+	//	std::vector<std::string>   result;
+	string line;
+	std::vector<string> lines;
+
+	while (std::getline(file, line))
+	{
+		lines.push_back(line);
+	}
+
+//	cout << "\nLines pushed " << lines.size();
+
+	cudaString2 *linesCuda = new cudaString2[lines.size()];
+
+	for (int i = 0; i < lines.size(); i++)
+	{
+		linesCuda[i].str = &lines[i][0];
+		linesCuda[i].length = lines[i].size();
+		linesCuda[i].str[lines[i].size()] = '\0';
+	}
+
+//	cout << "\nCuda Lines assigned " << lines.size();
+
+	myString *tweetsCuda = new myString[lines.size()];
+
+	for (int i = 0; i < lines.size();i++)
+	{
+	separate(linesCuda[i].str, linesCuda[i].length, &tweetsCuda[i]);
+	}
+
+//	int d = lines.size();
+//	cout << "\nseparated " << lines.size();
+
+	for (int i = 0; i < lines.size(); i++)
+	{
+		johny::tweetStyle tweet;
+		tweet.clas = tweetsCuda[i].str + tweetsCuda[i].index[0];
+		tweet.id = tweetsCuda[i].str + tweetsCuda[i].index[1];
+		tweet.date = tweetsCuda[i].str + tweetsCuda[i].index[2];
+		tweet.query = tweetsCuda[i].str + tweetsCuda[i].index[3];
+		tweet.sender = tweetsCuda[i].str + tweetsCuda[i].index[4];
+		tweet.message = tweetsCuda[i].str + tweetsCuda[i].index[5];
+
+		tweetVectors.push_back(tweet);
+	}
+	file.close();
+	return tweetVectors;
+}
+
+
 int main()
 {
-	cudaString2 string;
 
-//	tester2(string);
-//	print2(string);
-//	printf("%s", string.str);
+	std::vector<johny::tweetStyle> tweetVectors;
+	tweetVectors = parseFile("data/trainingSample.csv");
 
-/*	std::vector<double> vec;
-
-	vec.push_back(1);
-	vec.push_back(2);
-	vec.push_back(3);
-	vec.push_back(4);
-	vec.push_back(5);
-	vec.push_back(6);
-	*/
-
-/*	std::vector<std::string> vec;
-
-	std::string str = "hello";
-
-	vec.push_back(str);
-
-	str = "hello2";
-
-	vec.push_back(str);
-
-//	char *a;
-//	a = &vec[0][0];
-
-	cudaString2 *cudaStr = new cudaString2[vec.size()];
-
-	cudaStr[0].str = &vec[0][0];
-//	cudaStr->str= &vec[0][0];
-	cudaStr[1].str[4] = 'j';
-
-//	a[4] = 22;
-//	a[2] = '3';
-
-//	printf("%c", *a);
-	printf("\n%s  %s", vec[0].c_str(),vec[1].c_str());
-	*/
-
-	char *a = new char[7];
-	a[0] = '1';
-	a[1] = '2';
-	a[2] = '3';
-	a[3] = '\0';
-	a[4] = '4';
-	a[5] = '5';
-	a[6] = '6';
-	a[7] = '\0';
-
-	std::string str(a),str2;
-//	str.insert(str.end(), a[0], 3);// (a);
-	str2.assign(a+4);
-
-	std::string temp;
-	temp = "hello";
-
-	cudaString2 b;
-	b.str = &temp[0];
-	b.length = temp.size();
-	b.str[b.length] = '\0';
-
-//	for (int i = 0; i < b.length; i++)
-	//{
-		printf("%s %s", b.str,temp.c_str());
-//	}
-
-//	printf("%s %s %c", str.c_str(),str2.c_str(),*(b+5));
-
+	for (johny::tweetStyle tweet : tweetVectors)
+	{
+		std::cout << tweet.message<<'\n';
+	}
 	getchar();
 }
