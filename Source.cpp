@@ -13,13 +13,13 @@
 using namespace std;
 
 
-int main2(int arglen, char *argc)
+int main(int arglen, char *argc)
 {
 	using namespace johny;
 
 	std::vector<tweetStyle> tweetVectors,tweetTargets;
-	tweetVectors = johnyGPU::parseFileCuda("data/trainingSample.csv");
-	tweetTargets = parseFileTarget("data/testSample.csv");
+	tweetVectors = johnyGPU::parseFileCuda("data/trainingSample.csv",true);
+	tweetTargets = johnyGPU::parseFileCuda("data/testSample.csv",false);
 //	cout << tweetVectors.size();
 
 	

@@ -30,5 +30,5 @@ bool wordToVocabsMatch(std::string word, std::vector<vocabStatus> vocabStatusLis
 
 namespace johnyGPU
 {
-	std::vector<johny::tweetStyle> parseFileCuda(std::string fileName);
+	std::vector<johny::tweetStyle> parseFileCuda(std::string fileName, bool source);
 }

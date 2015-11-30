@@ -1,43 +1,10 @@
-﻿Build started 11/30/2015 4:19:55 PM.
+﻿Build started 11/30/2015 4:25:52 PM.
      1>Project "C:\Users\User\documents\visual studio 2013\Projects\Natural_Language_Processing\Natural_Language_Processing\Natural_Language_Processing.vcxproj" on node 2 (Build target(s)).
-     1>AddCudaCompileDeps:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\cl.exe /E /nologo /showIncludes /TP /D__CUDACC__ /DWIN32 /D_DEBUG /D_CONSOLE /D_MBCS /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" /I. /FIcuda_runtime.h /c "C:\Users\User\documents\visual studio 2013\Projects\Natural_Language_Processing\Natural_Language_Processing\kernel.cu" 
-       CudaBuild:
-         Compiling CUDA source file kernel.cu...
-         cmd.exe /C "C:\Users\User\AppData\Local\Temp\tmp270c068613004935bd8181c168ba3a6e.cmd"
-         "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2013 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin"  -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile -cudart static  -g   -DWIN32 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd " -o Debug\kernel.cu.obj "C:\Users\User\documents\visual studio 2013\Projects\Natural_Language_Processing\Natural_Language_Processing\kernel.cu"
-         
-         C:\Users\User\documents\visual studio 2013\Projects\Natural_Language_Processing\Natural_Language_Processing>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2013 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin"  -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile -cudart static  -g   -DWIN32 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd " -o Debug\kernel.cu.obj "C:\Users\User\documents\visual studio 2013\Projects\Natural_Language_Processing\Natural_Language_Processing\kernel.cu" 
-     1>C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(97): warning : variable "i" was declared but never referenced
-     1>C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(187): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(196): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(205): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(213): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(97): warning : variable "i" was declared but never referenced
-     1>C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(187): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(196): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(205): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(213): warning : transfer of control bypasses initialization of:
-         kernel.cu
-     1>C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(222): warning C4244: '=' : conversion from 'double' to 'unsigned int', possible loss of data
-     1>C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(262): warning C4533: initialization of 'block' is skipped by 'goto Error'
-                 C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(217) : see declaration of 'block'
-                 C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(262) : see declaration of 'Error'
-     1>C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(262): warning C4533: initialization of 'grid' is skipped by 'goto Error'
-                 C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(216) : see declaration of 'grid'
-                 C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(262) : see declaration of 'Error'
-                 C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(217) : see declaration of 'block'
-                 C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(262) : see declaration of 'Error'
-                 C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(216) : see declaration of 'grid'
-                 C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(262) : see declaration of 'Error'
-                 C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(217) : see declaration of 'block'
-                 C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(262) : see declaration of 'Error'
-                 C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(216) : see declaration of 'grid'
-                 C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(262) : see declaration of 'Error'
-                 C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(217) : see declaration of 'block'
-                 C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(262) : see declaration of 'Error'
-                 C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(216) : see declaration of 'grid'
-                 C:/Users/User/documents/visual studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(262) : see declaration of 'Error'
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt test.cpp
+         test.cpp
+     1>c:\users\user\documents\visual studio 2013\projects\natural_language_processing\natural_language_processing\test.cpp(56): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\user\documents\visual studio 2013\projects\natural_language_processing\natural_language_processing\test.cpp(72): warning C4018: '<' : signed/unsigned mismatch
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\User\documents\visual studio 2013\Projects\Natural_Language_Processing\Debug\Natural_Language_Processing.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\lib\Win32" cudart.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\User\documents\visual studio 2013\Projects\Natural_Language_Processing\Debug\Natural_Language_Processing.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\User\documents\visual studio 2013\Projects\Natural_Language_Processing\Debug\Natural_Language_Processing.lib" /MACHINE:X86 Debug\kernel.cu.obj
          Debug\logics.obj
@@ -57,4 +24,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:28.92
+Time Elapsed 00:00:03.95

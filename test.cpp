@@ -61,11 +61,11 @@ void charSeparator(char *c, int *indexes, unsigned int size)
 
 
 
-int main()
+int maint()
 {
 
 	std::vector<johny::tweetStyle> tweetVectors;
-	tweetVectors = johnyGPU::parseFileCuda("data/trainingSample.csv");
+	tweetVectors = johnyGPU::parseFileCuda("data/trainingSample.csv",true);
 
 	std::cout << "done";
 

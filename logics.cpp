@@ -219,7 +219,7 @@ std::vector<johny::tweetStyle> johny::parseFile(std::string fileName)
 	return tweetVectors;
 }
 
-std::vector<johny::tweetStyle> johnyGPU::parseFileCuda(std::string fileName)
+std::vector<johny::tweetStyle> johnyGPU::parseFileCuda(std::string fileName, bool source)
 {
 	using namespace std;
 	using namespace johny;
@@ -268,6 +268,14 @@ std::vector<johny::tweetStyle> johnyGPU::parseFileCuda(std::string fileName)
 	{
 		johny::tweetStyle tweet;
 		(tweet).clas = &charLines[indexes[20 * i]];
+		
+		if (source)
+		{
+		if ((tweet).clas.compare("0") == 0)
+				johny::status.negWords++;
+		else if ((tweet).clas.compare("4") == 0)
+				johny::status.posWords++;
+		}
 
 		(tweet).id = &charLines[indexes[20 * i + 1]];
 
@@ -278,7 +286,6 @@ std::vector<johny::tweetStyle> johnyGPU::parseFileCuda(std::string fileName)
 		(tweet).sender = &charLines[indexes[20 * i + 4]];
 
 		(tweet).message = &charLines[indexes[20 * i + 5]];
-
 
 		tweetVectors.push_back(tweet);
 	}
