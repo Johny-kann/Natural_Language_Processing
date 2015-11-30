@@ -12,6 +12,13 @@ struct cudaString
 	int length;
 };
 
+struct myString
+{
+	char *str;
+	short index[10];
+	short totIndexes;
+};
+
 cudaError_t addWithCuda(int *c, const int *a, const int *b, unsigned int size);
 cudaError_t testWithCuda(unsigned int size);
 

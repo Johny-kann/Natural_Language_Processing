@@ -20,14 +20,17 @@ struct myString
 	short totIndexes;
 };
 
-void separate(char *c, int length, myString *temp)
+void separate(cudaString2 *cuda
+//	char *c, int length
+	, myString *temp)
 {
 	char *prev, *prev2, *curr;
-	temp->str = c;
+	temp->str = cuda->str;
+	char *c = cuda->str;
 	temp->index[0] = 0;
 	temp->totIndexes = 1;
 
-	for (int i = 2; i < length; i++)
+	for (int i = 2; i < cuda->length; i++)
 	{
 		curr = &c[i];
 		prev = &c[i - 1];	
@@ -52,7 +55,7 @@ void separate(char *c, int length, myString *temp)
 
 	c[0] = '\0';
 	temp->index[0] = 1;
-	c[length-1] = '\0';
+	c[cuda->length-1] = '\0';
 	
 }
 
@@ -109,7 +112,8 @@ std::vector<johny::tweetStyle> parseFile(std::string fileName)
 
 	for (int i = 0; i < lines.size();i++)
 	{
-	separate(linesCuda[i].str, linesCuda[i].length, &tweetsCuda[i]);
+		separate(&linesCuda[i], &tweetsCuda[i]);
+	//	linesCuda[i].str, linesCuda[i].length, &tweetsCuda[i]);
 	}
 
 //	int d = lines.size();
