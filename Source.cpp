@@ -29,9 +29,16 @@ int main(int arglen, char *argc)
 	johny::status.posProb = (double)johny::status.posWords / tweetVectors.size();
 	johny::status.negProb = (double)johny::status.negWords / tweetVectors.size();
 	
-	std::vector<std::string> posTextWords = tweetsToWords(tweetVectors,true);
+	std::vector<std::string> posTextWords;
+//	 = tweetsToWords(tweetVectors, true);
 
-	std::vector<std::string> negTextWords = tweetsToWords(tweetVectors, false);
+	std::vector<std::string> negTextWords;
+//	 = tweetsToWords(tweetVectors, false);
+
+	johnyGPU::tweetsToWordsGPU(tweetVectors, posTextWords, negTextWords);
+
+//	johny::tweetsToWords(tweetVectors, posTextWords, negTextWords);
+	cout << "Tweet to words done\n";
 
 
 	std::vector<std::string> strings;
@@ -60,8 +67,11 @@ int main(int arglen, char *argc)
 		vocabList.push_back(vocab);
 	}
 
+	cout << "Positive Prob calculation starts\n";
 
 	johny::calculateProbOfWords(posTextWords, vocabList, vocabulary.size(), true);
+
+	cout << "Negative Prob calculation starts\n";
 
 	johny::calculateProbOfWords(negTextWords, vocabList, vocabulary.size(), false);
 

@@ -24,6 +24,36 @@ struct myString
 cudaError_t addWithCuda(int *c, const int *a, const int *b, unsigned int size);
 cudaError_t testWithCuda(unsigned int size);
 
+__device__ void wordHandlerDevice(char *c, int *indexes, int lineNum)
+{
+	char prev = '0', curr;
+	indexes[0] = 150 * lineNum;
+
+	int count = 0;
+
+	for (int i = 0; c[i] != '\0'; i++)
+	{
+		curr = c[i];
+		if (i != 0)
+			prev = c[i - 1];
+
+		if (!((curr >= 'A' && curr <= 'Z') || (curr >= 'a' && curr <= 'z') || (curr >= '0' && curr <= '9')))
+		{
+			c[i] = '\0';
+			curr = '\0';
+		}
+
+		if (prev == '\0' && curr != '\0')
+		{
+			count++;
+			indexes[count] = 150 * lineNum + i;
+		}
+	}
+
+	count++;
+	indexes[count] = -1;
+}
+
 __device__ void charLineHandlerDevice(char *c, int *indexes, unsigned int lineNum)
 {
 	char prev, prev2, curr;
@@ -66,6 +96,14 @@ __device__ void charLineHandlerDevice(char *c, int *indexes, unsigned int lineNu
 		indexes[count] = -1;
 }
 
+__global__ void tweetToWordKernal(char *message, int *index, unsigned int size)
+{
+	int i = blockDim.x*blockIdx.x + threadIdx.x;
+
+	if (i<size)
+		wordHandlerDevice(&message[150 * i], &index[70 * i], i);
+	
+}
 
 __global__ void separateKernal(char *charIn, int *indexes, unsigned int size)
 {
@@ -155,6 +193,28 @@ int mainK()
 
 cudaError_t separateStub(char *chars, int *indexes, unsigned int size);
 
+cudaError_t tweetToWordStub(char *chars, int *indexes, unsigned int size);
+
+int tweetToWordCuda(char *message, int *index, unsigned int size)
+{
+	// Add vectors in parallel.
+	cudaError_t cudaStatus = tweetToWordStub(message, index, size);
+	if (cudaStatus != cudaSuccess) {
+		fprintf(stderr, "addWithCuda failed!");
+		return 1;
+	}
+
+	// cudaDeviceReset must be called before exiting in order for profiling and
+	// tracing tools such as Nsight and Visual Profiler to show complete traces.
+	cudaStatus = cudaDeviceReset();
+	if (cudaStatus != cudaSuccess) {
+		fprintf(stderr, "cudaDeviceReset failed!");
+		return 1;
+	}
+
+	return 0;
+}
+
 int separator(char *chars, int *indexes, unsigned int size)
 {
 	// Add vectors in parallel.
@@ -173,6 +233,93 @@ int separator(char *chars, int *indexes, unsigned int size)
 	}
 
 	return 0;
+}
+
+cudaError_t tweetToWordStub(char *chars, int *indexes, unsigned int size)
+{
+	char *dev_in;
+	int *dev_out;
+	cudaError_t cudaStatus;
+
+	cudaStatus = cudaSetDevice(0);
+	if (cudaStatus != cudaSuccess) {
+		fprintf(stderr, "cudaSetDevice failed!  Do you have a CUDA-capable GPU installed?");
+		goto Error;
+	}
+
+	// Allocate GPU buffers for three vectors (two input, one output).
+
+//	std::cout << 150 * size*sizeof(char) << '\t';
+	cudaStatus = cudaMalloc((void**)&dev_in, 150 * size * sizeof(char));
+	if (cudaStatus != cudaSuccess) {
+		fprintf(stderr, "cudaMalloc failed!");
+		goto Error;
+	}
+
+	// Allocate GPU buffers for three vectors (two input, one output)    .
+
+//	std::cout << 70 * size*sizeof(int) << '\t';
+	cudaStatus = cudaMalloc((void**)&dev_out, 70 * size * sizeof(int));
+	if (cudaStatus != cudaSuccess) {
+		fprintf(stderr, "cudaMalloc failed!");
+		goto Error;
+	}
+
+
+	// Copy input vectors from host memory to GPU buffers.
+	cudaStatus = cudaMemcpy(dev_in, chars, 150 * size * sizeof(char), cudaMemcpyHostToDevice);
+	if (cudaStatus != cudaSuccess) {
+		fprintf(stderr, "cuda String cudaMemcpy failed!");
+		goto Error;
+	}
+
+	dim3 grid;
+	dim3 block;
+
+	block.x = 1024;
+	block.y = 1;
+	block.z = 1;
+	grid.x = ceil((double)size / 1024);
+	grid.y = 1;
+	grid.z = 1;
+
+	std::cout << grid.x << block.x;
+
+	tweetToWordKernal << < grid, block >> >(dev_in, dev_out, size);
+	// Check for any errors launching the kernel
+	cudaStatus = cudaGetLastError();
+	if (cudaStatus != cudaSuccess) {
+		fprintf(stderr, "separateKernel launch failed: %s\n", cudaGetErrorString(cudaStatus));
+		goto Error;
+	}
+
+	// cudaDeviceSynchronize waits for the kernel to finish, and returns
+	// any errors encountered during the launch.
+	cudaStatus = cudaDeviceSynchronize();
+	if (cudaStatus != cudaSuccess) {
+		fprintf(stderr, "cudaDeviceSynchronize returned error code %d after launching addKernel!\n", cudaStatus);
+		goto Error;
+	}
+
+	// Copy output vector from GPU buffer to host memory.
+	cudaStatus = cudaMemcpy(indexes, dev_out, 70 * size * sizeof(int), cudaMemcpyDeviceToHost);
+	if (cudaStatus != cudaSuccess) {
+		fprintf(stderr, "Indexes Cuda tweet to word cudaMemcpy failed!");
+		goto Error;
+	}
+
+	cudaStatus = cudaMemcpy(chars, dev_in, 150 * size * sizeof(char), cudaMemcpyDeviceToHost);
+	if (cudaStatus != cudaSuccess) {
+		fprintf(stderr, "chars Cuda tweet to word cudaMemcpy failed!");
+		goto Error;
+	}
+
+	
+Error:
+	cudaFree(dev_in);
+	cudaFree(dev_out);
+
+	return cudaStatus;
 }
 
 cudaError_t separateStub(char *chars, int *indexes, unsigned int size)

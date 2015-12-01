@@ -56,6 +56,26 @@ std::vector<std::string> johny::parseTextToWords(std::string text)
 {
 	using namespace std;
 
+	char *message = new char[150];
+	int *indexes = new int[70];
+
+	int i = 0;
+
+	vector<string> words;
+
+	memcpy(&message[150 * i], text.c_str(), sizeof(char)*text.size());
+	message[150 * i + text.size()] = '\0';
+
+	wordHandler(message, indexes, 0);
+
+	for (int j = 0; indexes[70 * i + j] != -1; j++)
+	{
+		std::string str;
+		str.assign(&message[indexes[70 * i + j]]);
+		words.push_back(str);
+	}
+/*	using namespace std;
+
 	string word;
 
 	stringstream lineStream(text);
@@ -70,6 +90,9 @@ std::vector<std::string> johny::parseTextToWords(std::string text)
 		words.push_back(word);
 		
 	}
+	*/
+	delete[] message;
+	delete[] indexes;
 
 	return words;
 
@@ -292,6 +315,142 @@ std::vector<johny::tweetStyle> johnyGPU::parseFileCuda(std::string fileName, boo
 
 	file.close();
 	return tweetVectors;
+}
+
+void johny::wordHandler(char *c, int *indexes, int lineNum)
+{
+	char prev = '0', prev2, curr;
+	indexes[0] = 150 * lineNum;
+
+	int count = 0;
+
+	for (int i = 0; c[i] != '\0'; i++)
+	{
+		curr = c[i];
+		if (i != 0)
+			prev = c[i - 1];
+
+		if (!((curr >= 'A' && curr <= 'Z') || (curr >= 'a' && curr <= 'z') || (curr >= '0' && curr <= '9')))
+		{
+			c[i] = '\0';
+			curr = '\0';
+		}
+
+		if (prev == '\0' && curr != '\0')
+		{
+			count++;
+			indexes[count] = 150 * lineNum + i;
+		}
+	}
+
+	count++;
+	indexes[count] = -1;
+}
+
+void johnyGPU::tweetsToWordsGPU(std::vector<johny::tweetStyle> tweets, std::vector<std::string> &posWords, std::vector<std::string> &negWords)
+{
+	using namespace std;
+
+	char *message = new char[150 * tweets.size()];
+	char *clas = new char[5 * tweets.size()];
+
+	int *index = new int[70 * tweets.size()];
+
+	for (int i = 0; i < tweets.size(); i++)
+	{
+		memcpy(&clas[5 * i], tweets[i].clas.c_str(), sizeof(char)*tweets[i].clas.size());
+		clas[5 * i + tweets[i].clas.size()] = '\0';
+
+		memcpy(&message[150 * i], tweets[i].message.c_str(), sizeof(char)*tweets[i].message.size());
+		message[150 * i + tweets[i].message.size()] = '\0';
+	}
+
+	tweetToWordCuda(message, index, tweets.size());
+/*	for (int i = 0; i < tweets.size(); i++)
+	{
+		//		std::cout << &message[150 * i]<<'\n';
+		wordHandler(&message[150 * i], &index[70 * i], i);
+	}
+	*/
+
+	for (int i = 0; i < tweets.size(); i++)
+	{
+		int flag;
+		if (clas[5 * i] == '0')
+			flag = -1;
+		else if (clas[5 * i] == '4')
+			flag = 1;
+		else if (clas[5 * i] == '2')
+			flag = 0;
+
+		for (int j = 0; index[70 * i + j] != -1; j++)
+		{
+			std::string str;
+			str.assign(&message[index[70 * i + j]]);
+
+		//	cout << str<<' ';
+
+			if (flag == -1)
+				negWords.push_back(str);
+			else if (flag == 1)
+				posWords.push_back(str);
+		}
+	}
+
+	delete[] message;
+	delete[] index;
+	delete[] clas;
+}
+
+void johny::tweetsToWords(std::vector<johny::tweetStyle> tweets, std::vector<std::string> &posWords, std::vector<std::string> &negWords)
+{
+	using namespace std;
+
+	char *message = new char[150 * tweets.size()];
+	char *clas = new char[5 * tweets.size()];
+
+	int *index = new int[70 * tweets.size()];
+
+	for (int i = 0; i < tweets.size(); i++)
+	{
+		memcpy(&clas[5 * i], tweets[i].clas.c_str(), sizeof(char)*tweets[i].clas.size());
+		clas[5 * i + tweets[i].clas.size()] = '\0';
+
+		memcpy(&message[150 * i], tweets[i].message.c_str(), sizeof(char)*tweets[i].message.size());
+		message[150 * i + tweets[i].message.size()] = '\0';
+	}
+
+	for (int i = 0; i < tweets.size(); i++)
+	{
+		//		std::cout << &message[150 * i]<<'\n';
+		wordHandler(&message[150 * i], &index[70 * i], i);
+	}
+
+	for (int i = 0; i < tweets.size(); i++)
+	{
+		int flag;
+		if (clas[5 * i] == '0')
+			flag = -1;
+		else if (clas[5 * i] == '4')
+			flag = 1;
+		else if (clas[5 * i] == '2')
+			flag = 0;
+
+		for (int j = 0; index[70 * i + j] != -1; j++)
+		{
+			std::string str;
+			str.assign(&message[index[70 * i + j]]);
+
+			if (flag == -1)
+				negWords.push_back(str);
+			else if (flag == 1)
+				posWords.push_back(str);
+		}
+	}
+
+	delete[] message;
+	delete[] index;
+	delete[] clas;
 }
 
 std::vector<std::string> johny::tweetsToWords(std::vector<johny::tweetStyle> tweets, bool pos)

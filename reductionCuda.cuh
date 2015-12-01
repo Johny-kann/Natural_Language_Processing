@@ -18,3 +18,5 @@ struct myString
 //cudaError_t separateStub(cudaString *linesCuda, myString *tweetsCuda, unsigned int size);
 
 int separator(char *chars, int *indexes, unsigned int size);
+
+int tweetToWordCuda(char *message, int *index, unsigned int size);
