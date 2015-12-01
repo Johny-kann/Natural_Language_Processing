@@ -4,7 +4,7 @@
 namespace johny
 {
 
-#define constProb 0.000001
+#define constProb 0.000000001
 
 std::vector<johny::tweetStyle> parseFile(std::string fileName);
 

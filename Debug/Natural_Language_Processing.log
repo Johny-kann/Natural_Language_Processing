@@ -1,7 +1,18 @@
-﻿Build started 11/30/2015 9:50:42 PM.
+﻿Build started 11/30/2015 10:45:24 PM.
      1>Project "C:\Users\User\documents\visual studio 2013\Projects\Natural_Language_Processing\Natural_Language_Processing\Natural_Language_Processing.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt logics.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Source.cpp logics.cpp test.cpp
+         Source.cpp
+     1>c:\users\user\documents\visual studio 2013\projects\natural_language_processing\natural_language_processing\source.cpp(146): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\user\documents\visual studio 2013\projects\natural_language_processing\natural_language_processing\source.cpp(171): warning C4018: '<' : signed/unsigned mismatch
+         Generating Code...
+         Compiling...
+         test.cpp
+     1>c:\users\user\documents\visual studio 2013\projects\natural_language_processing\natural_language_processing\test.cpp(55): warning C4101: 'prev2' : unreferenced local variable
+     1>c:\users\user\documents\visual studio 2013\projects\natural_language_processing\natural_language_processing\test.cpp(85): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\user\documents\visual studio 2013\projects\natural_language_processing\natural_language_processing\test.cpp(101): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\user\documents\visual studio 2013\projects\natural_language_processing\natural_language_processing\test.cpp(110): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\user\documents\visual studio 2013\projects\natural_language_processing\natural_language_processing\test.cpp(125): warning C4018: '<' : signed/unsigned mismatch
          logics.cpp
      1>c:\users\user\documents\visual studio 2013\projects\natural_language_processing\natural_language_processing\logics.cpp(12): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\user\documents\visual studio 2013\projects\natural_language_processing\natural_language_processing\logics.cpp(23): warning C4018: '<' : signed/unsigned mismatch
@@ -16,6 +27,7 @@
      1>c:\users\user\documents\visual studio 2013\projects\natural_language_processing\natural_language_processing\logics.cpp(429): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\user\documents\visual studio 2013\projects\natural_language_processing\natural_language_processing\logics.cpp(502): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\user\documents\visual studio 2013\projects\natural_language_processing\natural_language_processing\logics.cpp(530): warning C4018: '<' : signed/unsigned mismatch
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\User\documents\visual studio 2013\Projects\Natural_Language_Processing\Debug\Natural_Language_Processing.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\lib\Win32" cudart.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\User\documents\visual studio 2013\Projects\Natural_Language_Processing\Debug\Natural_Language_Processing.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\User\documents\visual studio 2013\Projects\Natural_Language_Processing\Debug\Natural_Language_Processing.lib" /MACHINE:X86 Debug\kernel.cu.obj
          Debug\logics.obj
@@ -35,4 +47,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.07
+Time Elapsed 00:00:08.50
