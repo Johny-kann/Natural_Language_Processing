@@ -538,6 +538,23 @@ double johny::showtweetProb(std::vector<std::string> texts, std::vector<vocabSta
 	return prob;
 }
 
+int johny::parseFileStrings(std::string fileName, char **words)
+{
+	std::vector<std::string> wordStrings = parseFileStrings(fileName);
+
+	*words = new char[wordStrings.size()*25];
+
+	char *tempWord = *words;
+
+	for (int i = 0; i < wordStrings.size(); i++)
+	{
+		memcpy(&tempWord[i * 25], wordStrings[i].c_str(), sizeof(char)*wordStrings[i].size());
+		tempWord[i * 25 + wordStrings[i].size()] = '\0';
+	}
+
+	return wordStrings.size();
+}
+
 std::vector<std::string> johny::parseFileStrings(std::string fileName)
 {
 	using namespace std;
@@ -555,7 +572,7 @@ std::vector<std::string> johny::parseFileStrings(std::string fileName)
 
 	//	std::stringstream lineStream(line);
 	//	std::string cell;
-
+		
 		toLower(line);
 
 		words.push_back(line);

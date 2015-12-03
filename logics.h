@@ -12,6 +12,9 @@ std::vector<johny::tweetStyle> parseFileTarget(std::string fileName);
 
 std::vector<std::string> parseFileStrings(std::string fileName);
 
+//Returns total number of words. Pass and empty pointer. Inside it will be initialized with memory
+int parseFileStrings(std::string fileName, char **words);
+
 std::vector<std::string> parseTextToWords(std::string text);
 
 void wordHandler(char *c, int *indexes, int lineNum);

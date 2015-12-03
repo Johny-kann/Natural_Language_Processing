@@ -152,48 +152,21 @@ void tweetToWordsGPU(std::vector<johny::tweetStyle> tweets,std::vector<std::stri
 }
 
 
-int maint()
+int main()
 {
+	char *words;
+	int size = johny::parseFileStrings("data/pos.txt",&words);
+	std::cout << "Read "<<size;
 
-	std::vector<johny::tweetStyle> tweetVectors;
-	tweetVectors = johnyGPU::parseFileCuda("data/trainSample2.csv",true);
-
-//	for (int i = 0; i < tweetVectors.size(); i++)
-//		std::cout << tweetVectors[i].message << '\n';
-
-//	char chars[300] = "Hello How Do you do? Awwww.....";
-//	int *index = new int[20 * 1];
-
-//	wordHandler(chars, index, 0);
-
-//	std::cout << "done";
-
-	std::vector < std::string> posW, negW;
-	tweetToWordsGPU(tweetVectors, posW, negW);
-
-/*	for (int i = 0; index[i] != -1; i++)
-		std::cout << index[i] << '\n';
-
-	for (int i = 0; index[i] != -1; i++)
+/*	for (int i = 0; i < size; i++)
 	{
-		std::string str;
-		str = &chars[index[i]];
-		strings.push_back(str);
+		std::cout << &words[25 * i] << '\n';
 	}
 	*/
-	for (std::string str : posW)
-	{
-		std::cout << str << '\n';
-	}
-	for (std::string str : negW)
-	{
-		std::cout << str << '\n';
-	}
-//	for (int i = 0; i < tweetVectors.size(); i++)
-//		std::cout << tweetVectors[i].message<<'\n';
-		
 	
 	getchar();
+
+	delete[] words;
 
 	return 0;
 }

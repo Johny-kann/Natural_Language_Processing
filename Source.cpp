@@ -24,7 +24,7 @@ inline bool fileExists(const std::string& name) {
 	}
 }
 
-int main(int arglen, char **argc)
+int mainS(int arglen, char **argc)
 {
 	using namespace johny;
 
