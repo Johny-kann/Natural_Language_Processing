@@ -28,16 +28,18 @@ int main(int arglen, char **argc)
 {
 	using namespace johny;
 
-	//	for (int i = 0; i < arglen; i++)
-	//		printf("%s", argc[i]);
+/*	std::string trainingSet(argc[1]);
 
-	std::string trainingSet("data/trainSample2.csv");
+	std::string posWords(argc[3]);
+
+	std::string negWords(argc[4]);
+	*/
+
+	std::string trainingSet("data/testdata.csv");
 	
-//	std::string testingSet(argc[2]);
+	std::string posWords("data/pos.txt");
 
-	std::string posWords("data/pos_red.txt");
-
-	std::string negWords("data/neg_red.txt");
+	std::string negWords("data/neg.txt");
 
 //	cout << "Training Set " << trainingSet << "\nTesting Set " << testingSet << std::endl;
 
@@ -77,25 +79,20 @@ int main(int arglen, char **argc)
 
 	int negWordSize = johny::parseFileStrings(negWords, &negWordsArray);
 
+	cout << "\nNumber of Positive and Negative words" << posWordSize <<'\t'<< negWordSize;
 
-//	cout << "Words formed";
-//	getchar();
-//	std::vector<std::string> posTextWords;
-	//	 = tweetsToWords(tweetVectors, true);
-
-//	std::vector<std::string> negTextWords;
-	//	 = tweetsToWords(tweetVectors, false);
 
 	johnyGPU::tweetsProbs(tweetVectors, posWordsArray, posWordSize, negWordsArray, negWordSize);
 	
-//	johnyGPU::tweetsToWordsGPU(tweetVectors, posTextWords, negTextWords);
-
 	for (int i = 0; i < tweetVectors.size(); i++)
 	{
-		cout << "\n" << tweetVectors[i].message << '\t' << tweetVectors[i].prob;// << '\t' << tweetTargets[i].clas;
+		cout << "\n" << tweetVectors[i].message << '\t' << tweetVectors[i].prob;
 	}
 
-	getchar();
+	delete[] posWordsArray;
+	delete[] negWordsArray;
+
+//	getchar();
 
 	return 0;
 }

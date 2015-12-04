@@ -378,6 +378,9 @@ void johnyGPU::tweetsProbs(std::vector<johny::tweetStyle> &tweets, char *posWord
 			tweets[i].prob = 0;
 	}
 
+	delete[] message;
+	delete[] prob;
+
 }
 
 void johnyGPU::tweetsToWordsGPU(std::vector<johny::tweetStyle> tweets, std::vector<std::string> &posWords, std::vector<std::string> &negWords)
