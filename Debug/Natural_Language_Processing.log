@@ -1,121 +1,121 @@
-﻿Build started 12/3/2015 9:19:21 PM.
+﻿Build started 12/3/2015 9:22:55 PM.
      1>Project "C:\Users\User\Documents\Visual Studio 2013\Projects\Natural_Language_Processing\Natural_Language_Processing\Natural_Language_Processing.vcxproj" on node 2 (Build target(s)).
      1>AddCudaCompileDeps:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\cl.exe /E /nologo /showIncludes /TP /D__CUDACC__ /DWIN32 /D_DEBUG /D_CONSOLE /D_MBCS /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin" /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" /I. /FIcuda_runtime.h /c "C:\Users\User\Documents\Visual Studio 2013\Projects\Natural_Language_Processing\Natural_Language_Processing\kernel.cu" 
        CudaBuild:
          Compiling CUDA source file kernel.cu...
-         cmd.exe /C "C:\Users\User\AppData\Local\Temp\tmp099de55e5fb242a78a8c2ee86ac33274.cmd"
+         cmd.exe /C "C:\Users\User\AppData\Local\Temp\tmp1f2f5c8312b043eb94fcba42d8f5f40f.cmd"
          "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2013 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin"  -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile -cudart static  -g   -DWIN32 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd " -o Debug\kernel.cu.obj "C:\Users\User\Documents\Visual Studio 2013\Projects\Natural_Language_Processing\Natural_Language_Processing\kernel.cu"
          
          C:\Users\User\Documents\Visual Studio 2013\Projects\Natural_Language_Processing\Natural_Language_Processing>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2013 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin"  -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile -cudart static  -g   -DWIN32 -D_DEBUG -D_CONSOLE -D_MBCS -Xcompiler "/EHsc /W3 /nologo /Od /Zi /RTC1 /MDd " -o Debug\kernel.cu.obj "C:\Users\User\Documents\Visual Studio 2013\Projects\Natural_Language_Processing\Natural_Language_Processing\kernel.cu" 
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(235): warning : variable "i" was declared but never referenced
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(372): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(378): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(384): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(390): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(396): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(404): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(413): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(419): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(479): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(488): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(497): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(505): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(566): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(575): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(584): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(592): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(235): warning : variable "i" was declared but never referenced
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(372): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(378): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(384): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(390): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(396): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(404): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(413): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(419): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(479): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(488): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(497): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(505): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(566): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(575): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(584): warning : transfer of control bypasses initialization of:
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(592): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(232): warning : variable "i" was declared but never referenced
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(369): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(375): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(381): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(387): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(393): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(401): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(410): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(416): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(476): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(485): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(494): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(502): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(563): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(572): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(581): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(589): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(232): warning : variable "i" was declared but never referenced
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(369): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(375): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(381): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(387): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(393): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(401): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(410): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(416): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(476): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(485): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(494): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(502): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(563): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(572): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(581): warning : transfer of control bypasses initialization of:
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(589): warning : transfer of control bypasses initialization of:
          kernel.cu
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(430): warning C4244: '=' : conversion from 'double' to 'unsigned int', possible loss of data
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(459): warning C4533: initialization of 'block' is skipped by 'goto Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(424) : see declaration of 'block'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(459) : see declaration of 'Error'
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(459): warning C4533: initialization of 'grid' is skipped by 'goto Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(423) : see declaration of 'grid'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(459) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(424) : see declaration of 'block'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(459) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(423) : see declaration of 'grid'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(459) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(424) : see declaration of 'block'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(459) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(423) : see declaration of 'grid'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(459) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(424) : see declaration of 'block'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(459) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(423) : see declaration of 'grid'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(459) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(424) : see declaration of 'block'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(459) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(423) : see declaration of 'grid'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(459) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(424) : see declaration of 'block'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(459) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(423) : see declaration of 'grid'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(459) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(424) : see declaration of 'block'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(459) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(423) : see declaration of 'grid'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(459) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(424) : see declaration of 'block'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(459) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(423) : see declaration of 'grid'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(459) : see declaration of 'Error'
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(514): warning C4244: '=' : conversion from 'double' to 'unsigned int', possible loss of data
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(550): warning C4533: initialization of 'block' is skipped by 'goto Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(509) : see declaration of 'block'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(550) : see declaration of 'Error'
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(550): warning C4533: initialization of 'grid' is skipped by 'goto Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(508) : see declaration of 'grid'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(550) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(509) : see declaration of 'block'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(550) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(508) : see declaration of 'grid'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(550) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(509) : see declaration of 'block'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(550) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(508) : see declaration of 'grid'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(550) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(509) : see declaration of 'block'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(550) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(508) : see declaration of 'grid'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(550) : see declaration of 'Error'
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(601): warning C4244: '=' : conversion from 'double' to 'unsigned int', possible loss of data
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(641): warning C4533: initialization of 'block' is skipped by 'goto Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(596) : see declaration of 'block'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(641) : see declaration of 'Error'
-     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(641): warning C4533: initialization of 'grid' is skipped by 'goto Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(595) : see declaration of 'grid'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(641) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(596) : see declaration of 'block'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(641) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(595) : see declaration of 'grid'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(641) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(596) : see declaration of 'block'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(641) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(595) : see declaration of 'grid'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(641) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(596) : see declaration of 'block'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(641) : see declaration of 'Error'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(595) : see declaration of 'grid'
-                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(641) : see declaration of 'Error'
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(427): warning C4244: '=' : conversion from 'double' to 'unsigned int', possible loss of data
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(456): warning C4533: initialization of 'block' is skipped by 'goto Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(421) : see declaration of 'block'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(456) : see declaration of 'Error'
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(456): warning C4533: initialization of 'grid' is skipped by 'goto Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(420) : see declaration of 'grid'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(456) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(421) : see declaration of 'block'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(456) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(420) : see declaration of 'grid'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(456) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(421) : see declaration of 'block'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(456) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(420) : see declaration of 'grid'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(456) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(421) : see declaration of 'block'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(456) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(420) : see declaration of 'grid'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(456) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(421) : see declaration of 'block'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(456) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(420) : see declaration of 'grid'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(456) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(421) : see declaration of 'block'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(456) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(420) : see declaration of 'grid'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(456) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(421) : see declaration of 'block'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(456) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(420) : see declaration of 'grid'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(456) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(421) : see declaration of 'block'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(456) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(420) : see declaration of 'grid'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(456) : see declaration of 'Error'
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(511): warning C4244: '=' : conversion from 'double' to 'unsigned int', possible loss of data
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(547): warning C4533: initialization of 'block' is skipped by 'goto Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(506) : see declaration of 'block'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(547) : see declaration of 'Error'
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(547): warning C4533: initialization of 'grid' is skipped by 'goto Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(505) : see declaration of 'grid'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(547) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(506) : see declaration of 'block'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(547) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(505) : see declaration of 'grid'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(547) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(506) : see declaration of 'block'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(547) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(505) : see declaration of 'grid'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(547) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(506) : see declaration of 'block'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(547) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(505) : see declaration of 'grid'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(547) : see declaration of 'Error'
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(598): warning C4244: '=' : conversion from 'double' to 'unsigned int', possible loss of data
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(638): warning C4533: initialization of 'block' is skipped by 'goto Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(593) : see declaration of 'block'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(638) : see declaration of 'Error'
+     1>C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(638): warning C4533: initialization of 'grid' is skipped by 'goto Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(592) : see declaration of 'grid'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(638) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(593) : see declaration of 'block'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(638) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(592) : see declaration of 'grid'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(638) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(593) : see declaration of 'block'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(638) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(592) : see declaration of 'grid'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(638) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(593) : see declaration of 'block'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(638) : see declaration of 'Error'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(592) : see declaration of 'grid'
+                 C:/Users/User/Documents/Visual Studio 2013/Projects/Natural_Language_Processing/Natural_Language_Processing/kernel.cu(638) : see declaration of 'Error'
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\User\Documents\Visual Studio 2013\Projects\Natural_Language_Processing\Debug\Natural_Language_Processing.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v7.5\lib\Win32" cudart.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\User\Documents\Visual Studio 2013\Projects\Natural_Language_Processing\Debug\Natural_Language_Processing.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\User\Documents\Visual Studio 2013\Projects\Natural_Language_Processing\Debug\Natural_Language_Processing.lib" /MACHINE:X86 Debug\kernel.cu.obj
          Debug\logics.obj
@@ -135,4 +135,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:26.65
+Time Elapsed 00:00:27.12

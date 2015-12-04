@@ -108,7 +108,7 @@ __device__ void compareWords(char *tweet, int *posNeg, char *posWords, unsigned 
 	{
 		for (int j = 0; j < posWordSize; j++)
 		{
-			if (stringCompare(&tweet[indexes[i]], &posWords[j]) == 0)
+			if (stringCompare(&tweet[indexes[i]], &posWords[25*j]) == 0)
 			{
 			//	printf("\nPositive Prob for word %s in thread %d", &tweet[indexes[i]], threadIdx.x);
 				prob++; break;
@@ -116,16 +116,13 @@ __device__ void compareWords(char *tweet, int *posNeg, char *posWords, unsigned 
 			
 		}
 
-/*		for (int j = 0; j < negWordSize; j++)
+		for (int j = 0; j < negWordSize; j++)
 		{
-			if (stringCompare(&tweet[indexes[i]], &negWords[j]) == 0)
+			if (stringCompare(&tweet[indexes[i]], &negWords[25*j]) == 0)
 			{
 				prob--; break;
 			}
 		}
-		printf("\nNeg Prob %d %d", prob, threadIdx.x);
-		*/
-
 	}
 
 	if (prob > 0)
