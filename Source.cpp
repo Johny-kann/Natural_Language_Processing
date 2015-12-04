@@ -24,7 +24,35 @@ inline bool fileExists(const std::string& name) {
 	}
 }
 
+int mainCPU(int arglen, char **argc);
+int mainGPU(int arglen, char **argc);
+
 int main(int arglen, char **argc)
+{
+	if (arglen > 3)
+	{
+		std::string naiveBayes(argc[1]);
+
+		if (naiveBayes.compare("naive-bayes-cpu")==0)
+		{
+			std::cout << "\nchoosing Naive GPU and CPU mode";
+			mainCPU(arglen, argc);
+		}
+		else
+		{	
+			std::cout << "\nchoosing Normal GPU mode";
+			mainGPU(arglen, argc);
+		}
+	}
+	else
+	{
+		std::cout << "\nchoosing Normal GPU mode";
+		mainGPU(arglen, argc);
+	}
+	return 0;
+}
+
+int mainGPU(int arglen, char **argc)
 {
 	using namespace johny;
 
@@ -51,25 +79,25 @@ int main(int arglen, char **argc)
 		negWords = "data/neg.txt";
 	}
 
-	cout << "Pos Words " << posWords << "\nNeg Words " << negWords << std::endl;
+	std::cout << "Pos Words " << posWords << "\nNeg Words " << negWords << std::endl;
 
 	if (!fileExists(trainingSet))
 	{
-		cout <<trainingSet<< " File doesn't exists";
+		std::cout << trainingSet << " File doesn't exists";
 		
 		return(-2);
 	}
 
 	if (!fileExists(posWords))
 	{
-		cout <<posWords<< " File doesn't exists";
+		std::cout << posWords << " File doesn't exists";
 		
 		return(-2);
 	}
 
 	if (!fileExists(negWords))
 	{
-		cout <<negWords<< "File doesn't exists";
+		std::cout << negWords << "File doesn't exists";
 		
 		return(-2);
 	}
@@ -84,14 +112,14 @@ int main(int arglen, char **argc)
 
 	int negWordSize = johny::parseFileStrings(negWords, &negWordsArray);
 
-	cout << "\nNumber of Positive and Negative words" << posWordSize <<'\t'<< negWordSize;
+	std::cout << "\nNumber of Positive and Negative words" << posWordSize << '\t' << negWordSize;
 
 
 	johnyGPU::tweetsProbs(tweetVectors, posWordsArray, posWordSize, negWordsArray, negWordSize);
 	
 	for (int i = 0; i < tweetVectors.size(); i++)
 	{
-		cout << "\n" << tweetVectors[i].message << '\t' << tweetVectors[i].prob;
+		std::cout << "\n" << tweetVectors[i].message << '\t' << tweetVectors[i].prob;
 	}
 
 	delete[] posWordsArray;
@@ -102,45 +130,45 @@ int main(int arglen, char **argc)
 	return 0;
 }
 
-int mainS(int arglen, char **argc)
+int mainCPU(int arglen, char **argc)
 {
 	using namespace johny;
 
 
-	std::string trainingSet(argc[1]);
+	std::string trainingSet(argc[2]);
 
-	std::string testingSet(argc[2]);
+	std::string testingSet(argc[3]);
 
-	std::string posWords(argc[3]);
+	std::string posWords(argc[4]);
 
-	std::string negWords(argc[4]);
+	std::string negWords(argc[5]);
 
-	cout << "Training Set " << trainingSet << "\nTesting Set " << testingSet<<std::endl;
+	std::cout << "Training Set " << trainingSet << "\nTesting Set " << testingSet << std::endl;
 
-	cout << "Pos Words " << posWords << "\nNeg Words " << negWords << std::endl;
+	std::cout << "Pos Words " << posWords << "\nNeg Words " << negWords << std::endl;
 
 
 	if (!fileExists(trainingSet))
 	{
-		cout <<trainingSet<< " File doesn't exists";
+		std::cout << trainingSet << " File doesn't exists";
 		return(-2);
 	}
 
 	if (!fileExists(testingSet))
 	{
-		cout << testingSet<<" File doesn't exists";
+		std::cout << testingSet << " File doesn't exists";
 		return(-2);
 	}
 
 	if (!fileExists(posWords))
 	{
-		cout << posWords<<" File doesn't exists";
+		std::cout << posWords << " File doesn't exists";
 		return(-2);
 	}
 
 	if (!fileExists(negWords))
 	{
-		cout << negWords<<" File doesn't exists";
+		std::cout << negWords << " File doesn't exists";
 		return(-2);
 	}
 
@@ -166,7 +194,7 @@ int mainS(int arglen, char **argc)
 	johnyGPU::tweetsToWordsGPU(tweetVectors, posTextWords, negTextWords);
 
 //	johny::tweetsToWords(tweetVectors, posTextWords, negTextWords);
-	cout << "Tweet to words done\n";
+	std::cout << "Tweet to words done\n";
 
 
 	std::vector<std::string> strings;
@@ -181,8 +209,8 @@ int mainS(int arglen, char **argc)
 	vocabulary.insert(std::end(vocabulary), std::begin(neg), std::end(neg));
 
 
-	cout << pos.size() << '\t' << neg.size();
-	cout << '\n'<<vocabulary.size();
+	std::cout << pos.size() << '\t' << neg.size();
+	std::cout << '\n' << vocabulary.size();
 	
 
 	vector<vocabStatus> vocabList;
@@ -196,17 +224,17 @@ int mainS(int arglen, char **argc)
 		vocabList.push_back(vocab);
 	}
 
-	cout << "Positive Prob calculation starts\n";
+	std::cout << "Positive Prob calculation starts\n";
 
 	johny::calculateProbOfWords(posTextWords, vocabList, vocabulary.size(), true);
 
-	cout << "Negative Prob calculation starts\n";
+	std::cout << "Negative Prob calculation starts\n";
 
 	johny::calculateProbOfWords(negTextWords, vocabList, vocabulary.size(), false);
 
-	cout << "\n..........Prob Calcuated.............\n";
+	std::cout << "\n..........Prob Calcuated.............\n";
 
-	cout << "............Testing Using Samples.......\n";
+	std::cout << "............Testing Using Samples.......\n";
 
 	vector<double> probs;
 	for (int i = 0; i < tweetTargets.size(); i++)
@@ -220,12 +248,12 @@ int mainS(int arglen, char **argc)
 
 		if (probPos > probNeg)
 		{
-			tweetTargets[i].clas = "4";
+			tweetTargets[i].clas = "1";
 			probs.push_back(probPos);
 		}
 		else
 		{
-			tweetTargets[i].clas = "0";
+			tweetTargets[i].clas = "-1";
 			probs.push_back(probNeg);
 		}
 
@@ -234,7 +262,7 @@ int mainS(int arglen, char **argc)
 
 	for (int i = 0; i < tweetTargets.size(); i++)
 	{
-		cout << "\n" << tweetTargets[i].message << '\t' << probs[i]<<'\t'<<tweetTargets[i].clas;
+		std::cout << "\n" << tweetTargets[i].message << '\t' << probs[i] << '\t' << tweetTargets[i].clas;
 	}
 
 	return 0;
