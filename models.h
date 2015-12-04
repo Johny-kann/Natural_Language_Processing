@@ -11,6 +11,7 @@ namespace johny
 struct tweetStyle
 {
 	std::string clas, id, date, query, sender, message;
+	int prob;
 };
 
 struct dataStatus

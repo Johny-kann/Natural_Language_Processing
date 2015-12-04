@@ -24,6 +24,82 @@ inline bool fileExists(const std::string& name) {
 	}
 }
 
+int main(int arglen, char **argc)
+{
+	using namespace johny;
+
+	//	for (int i = 0; i < arglen; i++)
+	//		printf("%s", argc[i]);
+
+	std::string trainingSet("data/trainSample2.csv");
+	
+//	std::string testingSet(argc[2]);
+
+	std::string posWords("data/pos_red.txt");
+
+	std::string negWords("data/neg_red.txt");
+
+//	cout << "Training Set " << trainingSet << "\nTesting Set " << testingSet << std::endl;
+
+	cout << "Pos Words " << posWords << "\nNeg Words " << negWords << std::endl;
+
+
+	if (!fileExists(trainingSet))
+	{
+		cout << "File doesn't exists";
+		getchar();
+		return(-2);
+	}
+
+	if (!fileExists(posWords))
+	{
+		cout << "File doesn't exists";
+		getchar();
+		return(-2);
+	}
+
+	if (!fileExists(negWords))
+	{
+		cout << "File doesn't exists";
+		getchar();
+		return(-2);
+	}
+
+
+	std::vector<tweetStyle> tweetVectors;
+	tweetVectors = johnyGPU::parseFileCuda(trainingSet
+		//		"data/trainingSample.csv"
+		, true);
+
+	char *posWordsArray , *negWordsArray;
+
+	int posWordSize = johny::parseFileStrings(posWords, &posWordsArray);
+
+	int negWordSize = johny::parseFileStrings(negWords, &negWordsArray);
+
+
+//	cout << "Words formed";
+//	getchar();
+//	std::vector<std::string> posTextWords;
+	//	 = tweetsToWords(tweetVectors, true);
+
+//	std::vector<std::string> negTextWords;
+	//	 = tweetsToWords(tweetVectors, false);
+
+	johnyGPU::tweetsProbs(tweetVectors, posWordsArray, posWordSize, negWordsArray, negWordSize);
+	
+//	johnyGPU::tweetsToWordsGPU(tweetVectors, posTextWords, negTextWords);
+
+	for (int i = 0; i < tweetVectors.size(); i++)
+	{
+		cout << "\n" << tweetVectors[i].message << '\t' << tweetVectors[i].prob;// << '\t' << tweetTargets[i].clas;
+	}
+
+	getchar();
+
+	return 0;
+}
+
 int mainS(int arglen, char **argc)
 {
 	using namespace johny;

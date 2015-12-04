@@ -151,13 +151,36 @@ void tweetToWordsGPU(std::vector<johny::tweetStyle> tweets,std::vector<std::stri
 //	return text_words;
 }
 
-
-int main()
+/*
+int stringCompare(char *source, char *dest)
 {
-	char *words;
-	int size = johny::parseFileStrings("data/pos.txt",&words);
-	std::cout << "Read "<<size;
+	int i;
+	for (i = 0; source[i] != '\0'; i++)
+	{
+		if (dest[i] > source[i])
+			return 1;
+		else if (dest[i] < source[i])
+			return -1;
+	}
 
+	if (dest[i] != '\0')
+		return 1;
+
+	return 0;
+}
+*/
+int maint()
+{
+//	char *words;
+//	int size = johny::parseFileStrings("data/pos.txt",&words);
+//	std::cout << "Read "<<size;
+
+/*	std::cout << stringCompare("abcdefgh", "abcdefgh") << std::endl;
+	std::cout << stringCompare("bat", "bas") << std::endl;
+	std::cout << stringCompare("bas", "bat") << std::endl;
+	std::cout << stringCompare("bat", "batt") << std::endl;
+	std::cout << stringCompare("batt", "bat") << std::endl;
+	*/
 /*	for (int i = 0; i < size; i++)
 	{
 		std::cout << &words[25 * i] << '\n';
@@ -166,7 +189,7 @@ int main()
 	
 	getchar();
 
-	delete[] words;
+//	delete[] words;
 
 	return 0;
 }

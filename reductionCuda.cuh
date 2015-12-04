@@ -20,3 +20,5 @@ struct myString
 int separator(char *chars, int *indexes, unsigned int size);
 
 int tweetToWordCuda(char *message, int *index, unsigned int size);
+
+int tweetToProb(char *tweets, int *prob, int size, char *posWords, int posWordSize, char *negWords, int negWordSize);

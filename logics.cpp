@@ -347,6 +347,39 @@ void johny::wordHandler(char *c, int *indexes, int lineNum)
 	indexes[count] = -1;
 }
 
+void johnyGPU::tweetsProbs(std::vector<johny::tweetStyle> &tweets, char *posWords,int posWordsSize, char *negWords, int negWordsSize)
+{
+	char *message = new char[150 * tweets.size()];
+
+//	int *index = new int[70 * tweets.size()];
+
+	int *prob = new int[tweets.size()];
+
+	for (int i = 0; i < tweets.size(); i++)
+	{
+		memcpy(&message[150 * i], tweets[i].message.c_str(), sizeof(char)*tweets[i].message.size());
+		message[150 * i + tweets[i].message.size()] = '\0';
+	}
+
+	
+
+	int error = tweetToProb(message, prob, tweets.size(), posWords, posWordsSize, negWords, negWordsSize);
+
+	if (error != 0)
+		std::cout << "\nError in Tweet to prob";
+
+	for (int i = 0; i < tweets.size(); i++)
+	{
+		if (prob[i] < 0)
+			tweets[i].prob = -1;
+		else if (prob[i] > 0)
+			tweets[i].prob = 1;
+		else
+			tweets[i].prob = 0;
+	}
+
+}
+
 void johnyGPU::tweetsToWordsGPU(std::vector<johny::tweetStyle> tweets, std::vector<std::string> &posWords, std::vector<std::string> &negWords)
 {
 	using namespace std;
