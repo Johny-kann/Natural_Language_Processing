@@ -28,50 +28,55 @@ int main(int arglen, char **argc)
 {
 	using namespace johny;
 
-/*	std::string trainingSet(argc[1]);
+	std::string trainingSet;
 
-	std::string posWords(argc[3]);
+	std::string posWords;
 
-	std::string negWords(argc[4]);
-	*/
+	std::string negWords;
 
-	std::string trainingSet("data/testdata.csv");
+	if (arglen > 2)
+	{
+		trainingSet = argc[1];
+
+		posWords = argc[2];
+
+		negWords = argc[3];
+	}
+	else
+	{
+		trainingSet = "data/testdata.csv";
 	
-	std::string posWords("data/pos.txt");
+		posWords = "data/pos.txt";
 
-	std::string negWords("data/neg.txt");
-
-//	cout << "Training Set " << trainingSet << "\nTesting Set " << testingSet << std::endl;
+		negWords = "data/neg.txt";
+	}
 
 	cout << "Pos Words " << posWords << "\nNeg Words " << negWords << std::endl;
 
-
 	if (!fileExists(trainingSet))
 	{
-		cout << "File doesn't exists";
-		getchar();
+		cout <<trainingSet<< " File doesn't exists";
+		
 		return(-2);
 	}
 
 	if (!fileExists(posWords))
 	{
-		cout << "File doesn't exists";
-		getchar();
+		cout <<posWords<< " File doesn't exists";
+		
 		return(-2);
 	}
 
 	if (!fileExists(negWords))
 	{
-		cout << "File doesn't exists";
-		getchar();
+		cout <<negWords<< "File doesn't exists";
+		
 		return(-2);
 	}
 
 
 	std::vector<tweetStyle> tweetVectors;
-	tweetVectors = johnyGPU::parseFileCuda(trainingSet
-		//		"data/trainingSample.csv"
-		, true);
+	tweetVectors = johnyGPU::parseFileCuda(trainingSet, true);
 
 	char *posWordsArray , *negWordsArray;
 
@@ -101,8 +106,6 @@ int mainS(int arglen, char **argc)
 {
 	using namespace johny;
 
-//	for (int i = 0; i < arglen; i++)
-//		printf("%s", argc[i]);
 
 	std::string trainingSet(argc[1]);
 
@@ -119,35 +122,32 @@ int mainS(int arglen, char **argc)
 
 	if (!fileExists(trainingSet))
 	{
-		cout << "File doesn't exists";
+		cout <<trainingSet<< " File doesn't exists";
 		return(-2);
 	}
 
 	if (!fileExists(testingSet))
 	{
-		cout << "File doesn't exists";
+		cout << testingSet<<" File doesn't exists";
 		return(-2);
 	}
 
 	if (!fileExists(posWords))
 	{
-		cout << "File doesn't exists";
+		cout << posWords<<" File doesn't exists";
 		return(-2);
 	}
 
 	if (!fileExists(negWords))
 	{
-		cout << "File doesn't exists";
+		cout << negWords<<" File doesn't exists";
 		return(-2);
 	}
 
 	std::vector<tweetStyle> tweetVectors,tweetTargets;
-	tweetVectors = johnyGPU::parseFileCuda(trainingSet
-//		"data/trainingSample.csv"
-											,true);
-	tweetTargets = johnyGPU::parseFileCuda(testingSet
-//		"data/testSample.csv"
-											,false);
+
+	tweetVectors = johnyGPU::parseFileCuda(trainingSet,true);
+	tweetTargets = johnyGPU::parseFileCuda(testingSet,false);
 //	cout << tweetVectors.size();
 
 	
@@ -170,12 +170,9 @@ int mainS(int arglen, char **argc)
 
 
 	std::vector<std::string> strings;
-	pos = parseFileStrings(posWords
-//			"data/pos_red.txt"
-		);
-	neg = parseFileStrings(negWords
-//		"data/neg_red.txt"
-		);
+	pos = parseFileStrings(posWords);
+	
+	neg = parseFileStrings(negWords);
 
 //	cout << pos.size()<<'\t'<<neg.size()<<'\t';
 
@@ -207,10 +204,6 @@ int mainS(int arglen, char **argc)
 
 	johny::calculateProbOfWords(negTextWords, vocabList, vocabulary.size(), false);
 
-/*	for (int i = 0; i < vocabList.size();i++)
-	cout <<endl<< vocabList.at(i).word << '\t' << vocabList.at(i).negProb <<'\t'<< vocabList.at(i).posProb;
-	*/
-
 	cout << "\n..........Prob Calcuated.............\n";
 
 	cout << "............Testing Using Samples.......\n";
@@ -239,14 +232,10 @@ int mainS(int arglen, char **argc)
 
 	}
 
-	
-
 	for (int i = 0; i < tweetTargets.size(); i++)
 	{
 		cout << "\n" << tweetTargets[i].message << '\t' << probs[i]<<'\t'<<tweetTargets[i].clas;
 	}
-
-	getchar();
 
 	return 0;
 }

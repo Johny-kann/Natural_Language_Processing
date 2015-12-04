@@ -126,12 +126,7 @@ std::vector<johny::tweetStyle> johny::parseFileTarget(std::string fileName)
 			switch (cc)
 			{
 			case 0: (tes).clas = "-1";
-			/*	if ((tes).clas.compare("0") == 0)
-					johny::status.negWords++;
-				else if ((tes).clas.compare("4") == 0)
-					johny::status.posWords++;
-					*/
-				break;
+					break;
 
 			case 4: (tes).sender = string(cell, 1, cell.length() - 2);
 				break;
